@@ -1,5 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../src/Config/Config.php';
+require_once __DIR__ . '/../src/Controller/HomeController.php';
 
-echo "TomTroc MVC is running";
+$controller = new HomeController();
+$controller->index();
