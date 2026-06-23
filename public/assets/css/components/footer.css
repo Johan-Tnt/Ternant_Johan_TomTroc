@@ -1,0 +1,17 @@
+/*Contient le footer du Site TomTroc*/
+footer {
+  margin-top: 80px;
+  padding: 20px 0;
+  background-color: white;
+}
+
+footer .container {
+  display: flex;
+  justify-content: right;
+}
+
+.logo-footer {
+  text-decoration: none;
+  color: #00ac66;
+  font-weight: bold;
+}
