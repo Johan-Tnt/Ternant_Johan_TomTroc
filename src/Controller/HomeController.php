@@ -4,6 +4,6 @@ class HomeController
 {
     public function index()
     {
-        require_once __DIR__ . '/../Views/Templates/home.php';
+        require_once __DIR__ . '/../View/Template/home.php';
     }
 }
