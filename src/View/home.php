@@ -15,4 +15,4 @@ $content = ob_get_clean();
 
 $title = 'Accueil';
 
-require_once __DIR__ . '/main.php';
+require_once __DIR__ . '/template/main.php';

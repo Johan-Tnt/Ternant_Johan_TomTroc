@@ -2,8 +2,8 @@
 
 class HomeController
 {
-    public function index()
+    public function index(): void
     {
-        require_once __DIR__ . '/../View/Template/home.php';
+        require_once __DIR__ . '/../View/home.php';
     }
 }
