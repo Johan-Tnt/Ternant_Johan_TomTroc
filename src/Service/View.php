@@ -1,29 +1,28 @@
 <?php
 
+namespace App\Service;
+
+use Exception;
 //Génère les vues en fonction de ce que chaque contrôleur lui passe en paramètre
 class View
 {
-    //Titre de la page
-    private string $title;
+    //Chemin vers les vues
+    private const VIEW_PATH = __DIR__ . '/../View/';
 
-    //Constructeur
-    public function __construct(string $title)
-    {
-        $this->title = $title;
-    }
+    //Chemin vers le layout principal
+    private const LAYOUT_PATH = __DIR__ . '/../View/Layout/main.php';
 
-    //Génère une page complete à partir d'une vue et du template principal
-    public function render(string $viewName, array $params = []): void
+    //Génère une page complete à partir d'une vue et du layout principal
+    public function render(string $viewName, string $title, array $params = []): void
     {
         //Construction du chemin vers la vue demandée
         $viewPath = $this->buildViewPath($viewName);
 
         //Variables utilisées dans main.php
         $content = $this->renderView($viewPath, $params);
-        $title = $this->title;
 
         ob_start();
-        require MAIN_VIEW_PATH;
+        require self::LAYOUT_PATH;
         echo ob_get_clean();
     }
 
@@ -31,7 +30,7 @@ class View
     private function renderView(string $viewPath, array $params = []): string
     {
         if (!file_exists($viewPath)) {
-            throw new Exception("la vue '$viewPath' est introuvable.");
+            throw new Exception("La vue '$viewPath' est introuvable.");
         }
 
         //Transforme les clés du tableau $params en variables utilisables dans la vue
@@ -43,7 +42,8 @@ class View
     }
 
     //Construit le chemin complet vers la vue demandée
-    private function buildViewPath(string $viewName): string {
-        return VIEW_PATH . $viewName . '.php';
+    private function buildViewPath(string $viewName): string 
+    {
+        return self::VIEW_PATH . $viewName . '.php';
     }
 }

@@ -1,10 +1,13 @@
 <?php
 
+namespace App\Controller;
+
+use App\Service\View;
 class HomeController
 {
     public function index(): void
     {
-        $view = new View('Accueil');
-        $view->render('home');
+        $view = new View();
+        $view->render('home', 'Accueil'); 
     }
 }

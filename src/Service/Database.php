@@ -1,5 +1,10 @@
 <?php
 
+namespace App\Service;
+
+use Exception;
+use PDO;
+use PDOException;
 class Database
 {
     private static ?PDO $connection = null;
@@ -7,59 +12,34 @@ class Database
     //Retourne une connexion PDO unique
     public static function getConnection(): PDO
     {
-        //Si aucune connexion n’existe encore, elle est créée à partir du fichier .env
         if (self::$connection === null) {
-            $config = self::loadEnv();
-            
-            //Permet de récupéré les informations de connexion à la base de données
-            $host = $config['DB_HOST'] ?? 'localhost'; 
-            $dbname = $config['DB_NAME'] ?? '';
-            $user = $config['DB_USER'] ?? '';
-            $password = $config['DB_PASSWORD'] ?? '';
-
-            //Construction du DSN pour la connexion MySQL
-            $dsn = "mysql:host={$host};dbname={$dbname};charset=utf8mb4";
-
-            //Création de la connexion PDO avec les options de gestion des erreurs
-            try {
-                self::$connection = new PDO($dsn, $user, $password, [
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                ]);
-            } catch (PDOException $exception) {
-                throw new Exception('Database connection failed: ' . $exception->getMessage());
-            }
+              self::$connection = self::createConnection();
         }
         return self::$connection;
     }
 
-    //Charge les variables du fichier .env
-    private static function loadEnv(): array 
+    //Création de la connexion à la base de données
+    private static function createConnection(): PDO
     {
-        $envPath = dirname(__DIR__, 2) . '/.env';
+        $config = new Config();
 
-        //Permet de vérifié que le fichier .env existe
-        if (!file_exists($envPath)) {
-            throw new Exception('.env file not found');
+        //Permet de récupéré les informations de connexion à la base de données
+        $host = $config->get('DB_HOST');
+        $dbname = $config->get('DB_NAME');
+        $user = $config->get('DB_USER');
+        $password = $config->get('DB_PASSWORD');
+
+        $dsn = "mysql:host={$host};dbname={$dbname};charset=utf8mb4";
+
+        try {
+            return new PDO($dsn, $user, $password, [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            ]);
+        } catch (PDOException $exception) {
+            throw new Exception(
+                'Database connection failed: ' . $exception->getMessage()
+            );
         }
-
-        $lines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        $config = [];
-
-        foreach ($lines as $line) {
-            $line = trim($line); 
-
-            //Ignore les lignes vides et les commentaires
-            if ($line === '' || str_starts_with($line, '#')) {
-                continue;
-            }
-
-            //Sépare chaque ligne en clé/valeur
-            [$key, $value] = array_pad(explode('=', $line, 2), 2, '');
-
-            //Stocke la configuration dans un tableau associatif
-            $config[trim($key)] = trim($value);
-        }
-        return $config;
     }
 }
