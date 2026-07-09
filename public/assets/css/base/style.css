@@ -1,35 +1,86 @@
-/*Contient le style du Site TomTroc*/
+/*Contient le style global du site TomTroc*/
+/*Style de l'écriture du site*/
+.team-signature {
+  font-family: "Inter", sans-serif;
+  font-style: italic; /*Italic*/
+  font-weight: 400; /*Regular*/
+  color: #a6a6a6;
+  display: inline-flex;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+  font-style: italic;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+h1,
+h2 {
+  font-family: "Playfair Display", serif;
+  font-weight: 400; /*Regular*/
+}
+
 /*Reset*/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
 }
 
 /*Body*/
 body {
   background-color: #f5f5f5;
   color: #333;
+  font-family: "Inter", sans-serif;
 }
 
 h1 {
-  text-align: center;
   margin-top: 80px;
   font-size: 36px;
   color: #333;
   letter-spacing: 1px;
 }
-p {
-  text-align: center;
-  margin-top: 80px;
+
+h2 {
+  font-size: 32px;
+  color: #333;
+  letter-spacing: 1px;
+}
+
+h3 {
   font-size: 16px;
   color: #333;
   letter-spacing: 1px;
 }
 
-/*Container futur*/
+p {
+  font-size: 16px;
+  color: #333;
+  letter-spacing: 1px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+img {
+  width: 100%;
+  object-fit: cover;
+}
+
+/*Couleur de l'écriture du site*/
+.written--primary {
+  color: #333;
+}
+
+.written--secondary {
+  color: #afacac;
+}
+
+/*Container global du site*/
 .container {
-  width: 80%;
+  width: 90%;
+  max-width: 1200px;
   margin: 0 auto;
 }

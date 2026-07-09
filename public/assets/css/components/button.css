@@ -1,0 +1,41 @@
+/*Contient le style global des boutons du site*/
+/*Style global d'un bouton*/
+.button {
+  display: inline-block;
+  padding: 14px 28px;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600; /*Semi Bold*/
+  border: none;
+  border-radius: 6px;
+}
+
+/*Bouton vert clair plein*/
+.button--primary {
+  background-color: #00ac66;
+}
+
+/*Bouton vert foncé*/
+.button--secondary {
+  background-color: #006d41;
+}
+
+/*Bouton rouge*/
+.button--tertiary {
+  background-color: #c56d6d;
+}
+
+/*Bouton contour vert clair*/
+.button--outline {
+  background-color: transparent;
+  color: #00ac66;
+  border: 1px solid #00ac66;
+}
+
+/*Les boutons de la page home*/
+.button_home {
+  /*display: inline-block;*/
+  margin-top: 35px;
+}

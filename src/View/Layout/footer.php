@@ -1,5 +1,5 @@
 <footer>
-    <div class="container">
+    <div class="footer_container">
         <nav>
             <ul>
                 <li>
@@ -22,7 +22,8 @@
 
                 <li>
                     <a href="#" class="logo-footer">
-                        TT
+                        <img src="assets/images/initial-tomtroc.svg" 
+                        alt="Logo Tom Troc">
                     </a>
                 </li>
             </ul>

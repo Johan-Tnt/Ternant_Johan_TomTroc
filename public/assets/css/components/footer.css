@@ -1,4 +1,4 @@
-/*Contient le footer du Site TomTroc*/
+/*Contient le footer du site TomTroc*/
 footer {
   margin-top: 80px;
   padding: 20px 0;
@@ -7,7 +7,15 @@ footer {
 
 footer .container {
   display: flex;
-  justify-content: right;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.footer_container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px 60px;
 }
 
 .logo-footer {

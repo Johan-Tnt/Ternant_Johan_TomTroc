@@ -1,7 +1,7 @@
 /*Contient le header du Site TomTroc*/
 /*Header*/
 header {
-  background-color: white;
+  background-color: #f5f5f5;
   padding: 20px 0;
 }
 
@@ -11,17 +11,41 @@ header .container {
   align-items: center;
 }
 
-.logo a {
-  text-decoration: none;
-  color: #00ac66;
+.logo {
+  margin-right: 80px;
+}
+
+.logo_text {
+  font-family: "Playfair Display", serif;
+  font-weight: 600; /*SemiBold*/
   font-size: 20px;
-  font-weight: bold;
+  color: #00ac66;
+}
+
+header nav:first-of-type {
+  margin-right: auto;
+}
+
+header nav:last-of-type ul {
+  gap: 25px;
+}
+
+.logo a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo_tomtroc {
+  height: 51px;
+  width: 51px;
 }
 
 nav ul {
   display: flex;
   list-style: none;
-  gap: 30px;
+  gap: 40px;
 }
 
 nav a {
@@ -31,4 +55,12 @@ nav a {
 
 nav a:hover {
   color: #00ac66;
+}
+
+/*Permet de savoir sur quelle page on ce trouve*/
+nav a.active {
+  font-weight: 600; /*SemiBold*/
+  /*Quand le router auras été créer la class active dans le html ne sera plus 
+  nécessaire car le "layout" pourra détecter automatiquement la page courante 
+  et appliquer la classe au bon lien*/
 }

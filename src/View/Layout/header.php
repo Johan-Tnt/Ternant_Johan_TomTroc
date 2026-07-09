@@ -2,14 +2,18 @@
     <div class="container">
         <div class="logo">
             <a href="index.php">
-                Tom Troc
+                <img  class="logo_tomtroc"
+                src="assets/images/tomtroc-logo.svg" 
+                alt="Logo Tom Troc">
+                
+                <span class="logo_text">Tom Troc</span>
             </a>
         </div>
 
         <nav>
             <ul>
                 <li>
-                    <a href="index.php">
+                    <a href="index.php" class="active">
                         Accueil
                     </a>
                 </li>
