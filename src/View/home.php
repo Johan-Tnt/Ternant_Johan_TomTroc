@@ -34,7 +34,7 @@
     <div class="container home_container">
     
         <article class="book_card">
-            <img src="assets/images/pictures-books/Rectangle 2.png" 
+            <img src="assets/images/pictures-books/esther.png" 
             alt="Couverture du livre Esther">
 
             <h3>Esther</h3>
@@ -45,7 +45,7 @@
         </article>
 
         <article class="book_card">
-            <img src="assets/images/pictures-books/Rectangle 2 (1).png" 
+            <img src="assets/images/pictures-books/the-kingfolk-table.png" 
             alt="Couverture du livre The Kingfolk Table">
 
             <h3>The Kingfolk Table</h3>
@@ -56,7 +56,7 @@
         </article>
 
         <article class="book_card">
-            <img src="assets/images/pictures-books/Rectangle 2 (2).png" 
+            <img src="assets/images/pictures-books/wabi-sabi.png" 
             alt="Couverture du livre Wabi Sabi">
             
             <h3>Wabi Sabi</h3>
@@ -67,7 +67,7 @@
         </article>
 
         <article class="book_card">
-            <img src="assets/images/pictures-books/Rectangle 2 (3).png" 
+            <img src="assets/images/pictures-books/milk-and-honey.png" 
             alt="Couverture du livre Milk & Honey">
             
             <h3>Milk & Honey</h3>
