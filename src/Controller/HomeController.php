@@ -7,7 +7,6 @@ class HomeController
 {
     public function index(): void
     {
-        $view = new View();
-        $view->render('home', 'Accueil'); 
+        View::getInstance()->render('home', 'Accueil');
     }
 }

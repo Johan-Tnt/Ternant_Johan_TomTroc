@@ -6,8 +6,37 @@ use Exception;
 
 class Config
 {
+    //Instance unique de Config
+    private static ?Config $instance = null;
+
     //Contient les variables du fichier .env
     private ?array $config = null;
+
+    //Empêche l'instanciation directe
+    private function __construct()
+    {
+    }
+
+    //Retourne l'instance unique
+    public static function getInstance(): Config
+    {
+        if (self::$instance === null) {
+           self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
+
+    //Empêche de copier l'instance
+    private function __clone()
+    {
+    }
+
+    //Empêche de recréer l'instance
+    public function __wakeup()
+    {
+        throw new Exception('Cannot recreate this instance.');
+    }
 
     //Retourne toute la configuration
     public function getAll(): array

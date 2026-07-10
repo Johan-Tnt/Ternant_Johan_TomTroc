@@ -12,6 +12,35 @@ class View
     //Chemin vers le layout principal
     private const LAYOUT_PATH = __DIR__ . '/../View/Layout/main.php';
 
+    //Instance unique de View
+    private static ?View $instance = null;
+
+    //Empêche l'instanciation directe
+    private function __construct()
+    {
+    }
+
+    //Retourne l'instance unique
+    public static function getInstance(): View
+    {
+        if (self::$instance === null) {
+           self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
+
+    //Empêche de copier l'instance
+    private function __clone()
+    {
+    }
+
+    //Empêche de recréer l'instance
+    public function __wakeup()
+    {
+        throw new Exception('Cannot recreate this instance.');
+    }
+
     //Génère une page complete à partir d'une vue et du layout principal
     public function render(string $viewName, string $title, array $params = []): void
     {

@@ -5,25 +5,57 @@ namespace App\Service;
 use Exception;
 use PDO;
 use PDOException;
+
 class Database
 {
-    private static ?PDO $connection = null;
+    //Instance unique de Database
+    private static ?Database $instance = null;
+
+    //Connexion PDO unique
+    private ?PDO $connection = null;
+
+    //Empêche l'instanciation directe
+    private function __construct()
+    {
+    }
+
+    //Retourne l'instance unique
+    public static function getInstance(): Database
+    {
+        if (self::$instance === null) {
+           self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
+    
+   //Empêche de copier l'instance
+    private function __clone()
+    {
+    }
+
+    //Empêche de recréer l'instance
+    public function __wakeup()
+    {
+        throw new Exception('Cannot recreate this instance.');
+    }
 
     //Retourne une connexion PDO unique
-    public static function getConnection(): PDO
+    public function getConnection(): PDO
     {
-        if (self::$connection === null) {
-              self::$connection = self::createConnection();
+        if ($this->connection === null) {
+           $this->connection = $this->createConnection();
         }
-        return self::$connection;
+
+        return $this->connection;
     }
 
     //Création de la connexion à la base de données
-    private static function createConnection(): PDO
+    private function createConnection(): PDO
     {
-        $config = new Config();
+        $config = Config::getInstance();
 
-        //Permet de récupéré les informations de connexion à la base de données
+        //Permet de récupérer les informations de connexion à la base de données
         $host = $config->get('DB_HOST');
         $dbname = $config->get('DB_NAME');
         $user = $config->get('DB_USER');
