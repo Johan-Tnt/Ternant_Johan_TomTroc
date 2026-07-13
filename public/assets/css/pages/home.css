@@ -76,6 +76,7 @@
 .book_card p {
   margin: 0 18px 10px;
   text-align: left;
+  font-size: 12px;
 }
 
 /*Boutons Voir tous les livres*/
@@ -92,7 +93,9 @@
 
 .how p {
   text-align: center;
-  margin: 30px 0 60px;
+  margin: 30px auto 60px;
+  max-width: 480px;
+  align-items: center;
 }
 
 .instructions_works {
