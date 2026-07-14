@@ -6,39 +6,10 @@ use Exception;
 use PDO;
 use PDOException;
 
-class Database
+class Database extends Singleton
 {
-    //Instance unique de Database
-    private static ?Database $instance = null;
-
     //Connexion PDO unique
     private ?PDO $connection = null;
-
-    //Empêche l'instanciation directe
-    private function __construct()
-    {
-    }
-
-    //Retourne l'instance unique
-    public static function getInstance(): Database
-    {
-        if (self::$instance === null) {
-           self::$instance = new self();
-        }
-
-        return self::$instance;
-    }
-    
-   //Empêche de copier l'instance
-    private function __clone()
-    {
-    }
-
-    //Empêche de recréer l'instance
-    public function __wakeup()
-    {
-        throw new Exception('Cannot recreate this instance.');
-    }
 
     //Retourne une connexion PDO unique
     public function getConnection(): PDO
