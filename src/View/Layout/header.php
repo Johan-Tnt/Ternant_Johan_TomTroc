@@ -1,3 +1,7 @@
+<?php
+$route = $_GET['route'] ?? '';
+?>
+
 <header>
     <div class="container">
         <div class="logo">
@@ -13,13 +17,13 @@
         <nav>
             <ul>
                 <li>
-                    <a href="index.php" class="active">
+                    <a href="index.php" class="<?= $route === '' ? 'active' : '' ?>">
                         Accueil
                     </a>
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="index.php?route=books" class="<?= $route === 'books' ? 'active' : '' ?>">
                         Nos livres à l'échange
                     </a>
                 </li>

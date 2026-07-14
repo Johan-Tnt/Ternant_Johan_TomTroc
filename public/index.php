@@ -4,11 +4,11 @@
 require_once __DIR__ . '/../src/Config/Autoload.php';
 
 use App\Config\Autoload;
-use App\Controller\HomeController;
+use App\Service\Router;
 
 //Enregistre l'autoloader PSR-4
 Autoload::register();
 
-//Lance le contrôleur de la page d'accueil
-$controller = new HomeController();
-$controller->index();
+//Lance le router
+$router = new Router();
+$router->run();

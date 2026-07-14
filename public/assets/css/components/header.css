@@ -60,7 +60,4 @@ nav a:hover {
 /*Permet de savoir sur quelle page on ce trouve*/
 nav a.active {
   font-weight: 600; /*SemiBold*/
-  /*Quand le router auras été créer la class active dans le html ne sera plus 
-  nécessaire car le "layout" pourra détecter automatiquement la page courante 
-  et appliquer la classe au bon lien*/
 }
