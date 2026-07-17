@@ -27,6 +27,9 @@
 <!-- LIST OF BOOKS -->
 <section class="books_list">
 
+    <!-- Titre masqué pour les lecteurs d'écran afin de décrire la liste des livres -->
+    <h2 class="visually-hidden">Liste des livres disponibles</h2>
+
     <div class="container home_container books_container">
 
         <article class="book_card exchange_books">

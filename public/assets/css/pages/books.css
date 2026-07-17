@@ -54,3 +54,10 @@
 .search_field::placeholder {
   color: #b5b5b5;
 }
+
+/*Permet de cacher visuellement le h2 de la page Nos livres*/
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
