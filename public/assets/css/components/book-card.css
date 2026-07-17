@@ -1,0 +1,37 @@
+/*Contient le style global des cartes des livres du site*/
+.book_card {
+  background: white;
+  border-radius: 0 0 10px 10px;
+  overflow: hidden;
+  width: 240px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+.book_card img {
+  height: 260px;
+}
+
+.book_card h3 {
+  margin: 18px 18px 8px;
+  text-align: left;
+}
+
+.book_card p {
+  margin: 0 18px 10px;
+  text-align: left;
+  font-size: 12px;
+}
+
+/*Contient le style de la mise en page des cartes pour afficher celle-ci 4 par lignes*/
+.books_container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+/*Contient les médias querries du site*/
+/*Responsive design en formats tablette*/
+@media (max-width: 1024px) {
+  .home_container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

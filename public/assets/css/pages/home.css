@@ -50,33 +50,10 @@
   margin-bottom: 60px;
 }
 
-.book_card {
-  background: white;
-  border-radius: 0 0 10px 10px;
-  overflow: hidden;
-  width: 240px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-}
-
 .latest_books .home_container {
   justify-content: center;
   gap: 30px;
   align-items: initial;
-}
-
-.book_card img {
-  height: 260px;
-}
-
-.book_card h3 {
-  margin: 18px 18px 8px;
-  text-align: left;
-}
-
-.book_card p {
-  margin: 0 18px 10px;
-  text-align: left;
-  font-size: 12px;
 }
 
 /*Boutons Voir tous les livres*/
