@@ -10,7 +10,10 @@
   height: 260px;
 }
 
+.book_card h2,
 .book_card h3 {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
   margin: 18px 18px 8px;
   text-align: left;
 }

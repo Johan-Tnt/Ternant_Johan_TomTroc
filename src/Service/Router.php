@@ -4,11 +4,11 @@ namespace App\Service;
 
 use App\Controller\HomeController;
 use App\Controller\BookController;
-use Exeception;
+use Exception;
 
 class Router 
 {
-    //Lanace le router 
+    //Lance le router 
     public function run(): void
     {
         $route = $_GET['route'] ?? '';
@@ -20,6 +20,10 @@ class Router
 
             case 'books':
                 (new BookController())->index();
+                break;
+
+            case 'book-details':
+                (new BookController())->show();
                 break;
 
             default:

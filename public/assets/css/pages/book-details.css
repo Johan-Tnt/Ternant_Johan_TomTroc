@@ -1,0 +1,85 @@
+/*Contient le style global de la page Détails d'un livre*/
+
+.book_details {
+  margin: auto;
+  padding-top: 50px;
+}
+
+.book_details_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  max-width: initial;
+  background: #faf9f7;
+}
+
+.img_details {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.book_details_content {
+  padding: 60px 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.book_details_content h1 {
+  margin-bottom: 8px;
+}
+
+.book_author {
+  margin-bottom: 35px;
+}
+
+.book_separator {
+  width: 40px;
+  height: 1px;
+  margin-bottom: 35px;
+  background-color: #afacac;
+}
+
+.book_label {
+  margin-bottom: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.book_description {
+  margin-bottom: 40px;
+  line-height: 1.7;
+  max-width: 800px;
+}
+
+.owner_card {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 6px;
+  background: white;
+  border: 1px solid #f0f0f0;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  align-self: flex-start;
+  padding-right: 20px;
+}
+
+.owner_avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.owner_name {
+  font-size: 14px;
+}
+
+.book_button {
+  width: 100%;
+  height: 63px;
+  margin-top: 100px;
+  align-self: center;
+}

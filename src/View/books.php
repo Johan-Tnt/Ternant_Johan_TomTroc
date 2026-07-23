@@ -27,38 +27,43 @@
 <!-- LIST OF BOOKS -->
 <section class="books_list">
 
-    <!-- Titre masqué pour les lecteurs d'écran afin de décrire la liste des livres -->
-    <h2 class="visually-hidden">Liste des livres disponibles</h2>
-
     <div class="container home_container books_container">
+
+    <a href="index.php?route=book-details&id=1" class="book_link">
 
         <article class="book_card exchange_books">
             <img src="assets/images/pictures-books/esther.png" 
             alt="Couverture du livre Esther">
 
-            <h3>Esther</h3>
+            <h2>Esther</h2>
 
             <p class="written--secondary" >Alabaster</p>
 
             <p class="written--secondary">Vendu par : CamilleClubLit</p>
         </article>
 
+    </a>
+
+    <a href="index.php?route=book-details&id=2" class="book_link">
+
         <article class="book_card exchange_books">
             <img src="assets/images/pictures-books/the-kingfolk-table.png" 
             alt="Couverture du livre The Kingfolk Table">
 
-            <h3>The Kingfolk Table</h3>
+            <h2>The Kingfolk Table</h2>
 
             <p class="written--secondary">Nathan Williams</p>
 
-            <p class="written--secondary">Vendu par : Natalire</p>
+            <p class="written--secondary">Vendu par : Alexlecture</p>
         </article>
+    
+    </a>
 
         <article class="book_card exchange_books">
             <img src="assets/images/pictures-books/wabi-sabi.png" 
             alt="Couverture du livre Wabi Sabi">
             
-            <h3>Wabi Sabi</h3>
+            <h2>Wabi Sabi</h2>
 
             <p class="written--secondary">Beth Kempton</p>
 
@@ -69,7 +74,7 @@
             <img src="assets/images/pictures-books/milk-and-honey.png" 
             alt="Couverture du livre Milk & Honey">
             
-            <h3>Milk & Honey</h3>
+            <h2>Milk & Honey</h2>
 
             <p class="written--secondary">Rupi Kaur</p>
 
@@ -80,7 +85,7 @@
             <img src="assets/images/pictures-books/delight.png" 
             alt="Couverture du livre Delight">
             
-            <h3>Delight</h3>
+            <h2>Delight</h2>
 
             <p class="written--secondary">Justin Rossow</p>
 
@@ -92,7 +97,7 @@
             <img src="assets/images/pictures-books/milwaukee-mission.png" 
             alt="Couverture du livre Milwaukee Mission">
             
-            <h3>Milwaukee Mission</h3>
+            <h2>Milwaukee Mission</h2>
 
             <p class="written--secondary">Elder Cooper Low</p>
 
@@ -103,7 +108,7 @@
             <img src="assets/images/pictures-books/minimalist-graphics.png" 
             alt="Couverture du livre Minimalist Graphics">
             
-            <h3>Minimalist Graphics</h3>
+            <h2>Minimalist Graphics</h2>
 
             <p class="written--secondary">Julia Schonlau</p>
 
@@ -114,7 +119,7 @@
             <img src="assets/images/pictures-books/hygge.png" 
             alt="Couverture du livre Hygge">
             
-            <h3>Hygge</h3>
+            <h2>Hygge</h2>
 
             <p class="written--secondary">Meik Wiking</p>
 
@@ -125,7 +130,7 @@
             <img src="assets/images/pictures-books/innovation.png" 
             alt="Couverture du livre Innovation">
             
-            <h3>Innovation</h3>
+            <h2>Innovation</h2>
 
             <p class="written--secondary">Matt Ridley</p>
 
@@ -136,7 +141,7 @@
             <img src="assets/images/pictures-books/psalms.png" 
             alt="Couverture du livre Psalms">
             
-            <h3>Psalms</h3>
+            <h2>Psalms</h2>
 
             <p class="written--secondary">Alabaster</p>
 
@@ -147,7 +152,7 @@
             <img src="assets/images/pictures-books/thinking-fast-slow.png" 
             alt="Couverture du livre Thinking, Fast & Slow">
             
-            <h3>Thinking, Fast & Slow</h3>
+            <h2>Thinking, Fast & Slow</h2>
 
             <p class="written--secondary">Daniel Kahneman</p>
 
@@ -158,7 +163,7 @@
             <img src="assets/images/pictures-books/a-book-full-of-hope.png" 
             alt="Couverture du livre A Book Full Of Hope">
             
-            <h3>A Book Full Of Hope</h3>
+            <h2>A Book Full Of Hope</h2>
 
             <p class="written--secondary">Rupi Kaur</p>
 
@@ -169,7 +174,7 @@
             <img src="assets/images/pictures-books/the-subtle-art-of-not-giving-a-f.png" 
             alt="Couverture du livre The Subtle Art Of...">
             
-            <h3>The Subtle Art Of...</h3>
+            <h2>The Subtle Art Of...</h2>
 
             <p class="written--secondary">Mark Manson</p>
 
@@ -180,7 +185,7 @@
             <img src="assets/images/pictures-books/narnia.png" 
             alt="Couverture du livre Narnia">
             
-            <h3>Narnia</h3>
+            <h2>Narnia</h2>
 
             <p class="written--secondary">C.S Lewis</p>
 
@@ -191,7 +196,7 @@
             <img src="assets/images/pictures-books/company-of-one.png" 
             alt="Couverture du livre Company Of One">
             
-            <h3>Company Of One</h3>
+            <h2>Company Of One</h2>
 
             <p class="written--secondary">Paul Jarvis</p>
 
@@ -202,7 +207,7 @@
             <img src="assets/images/pictures-books/the-two-tower.png" 
             alt="Couverture du livre The Two Tower">
             
-            <h3>The Two Tower</h3>
+            <h2>The Two Tower</h2>
 
             <p class="written--secondary">J.R.R R Tolkien</p>
 

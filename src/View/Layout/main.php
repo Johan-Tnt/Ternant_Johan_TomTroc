@@ -6,14 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $title ?? 'TomTroc'; ?></title>
 
-    <link rel="stylesheet" href="assets/css/base/style.css">
-    <link rel="stylesheet" href="assets/css/components/header.css">
-    <link rel="stylesheet" href="assets/css/components/footer.css">
-    <link rel="stylesheet" href="assets/css/pages/home.css">
-    <link rel="stylesheet" href="assets/css/components/button.css">
-    <link rel="stylesheet" href="assets/css/components/book-card.css">
-    <link rel="stylesheet" href="assets/css/pages/books.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -22,6 +14,15 @@
     <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="assets/css/base/style.css">
+    <link rel="stylesheet" href="assets/css/components/header.css">
+    <link rel="stylesheet" href="assets/css/components/footer.css">
+    <link rel="stylesheet" href="assets/css/pages/home.css">
+    <link rel="stylesheet" href="assets/css/components/button.css">
+    <link rel="stylesheet" href="assets/css/components/book-card.css">
+    <link rel="stylesheet" href="assets/css/pages/books.css">
+    <link rel="stylesheet" href="assets/css/pages/book-details.css">
     
 </head>
 

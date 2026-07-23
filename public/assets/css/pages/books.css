@@ -1,6 +1,7 @@
 /*Contient le style global de la page Nos livres à l'échange*/
 .books_list {
-  display: initial;
+  display: flex;
+  margin: 0 0 100px 0;
 }
 
 .exchange_books {
@@ -53,11 +54,4 @@
 .search_icon,
 .search_field::placeholder {
   color: #b5b5b5;
-}
-
-/*Permet de cacher visuellement le h2 de la page Nos livres*/
-.visually-hidden {
-  position: absolute;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
 }
