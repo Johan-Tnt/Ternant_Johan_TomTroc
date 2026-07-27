@@ -33,7 +33,7 @@ $route = $_GET['route'] ?? '';
         <nav>
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="index.php?route=register" class="<?= $route === 'register' ? 'active' : '' ?>">
                         Inscription
                     </a>
                 </li>

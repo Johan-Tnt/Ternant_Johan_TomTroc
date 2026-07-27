@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="assets/css/components/book-card.css">
     <link rel="stylesheet" href="assets/css/pages/books.css">
     <link rel="stylesheet" href="assets/css/pages/book-details.css">
-    
+    <link rel="stylesheet" href="assets/css/pages/register.css">
 </head>
 
 <body>

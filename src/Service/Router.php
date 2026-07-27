@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Controller\HomeController;
 use App\Controller\BookController;
+use App\Controller\UserController;
 use Exception;
 
 class Router 
@@ -24,6 +25,10 @@ class Router
 
             case 'book-details':
                 (new BookController())->show();
+                break;
+
+            case 'register':
+                (new UserController())->register();
                 break;
 
             default:
