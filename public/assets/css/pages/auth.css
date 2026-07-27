@@ -1,30 +1,31 @@
-/*Contient le style global du formulaire d'inscription du site*/
-.register_container {
+/*Contient les styles communs aux formulaires de connexion et d'inscription*/
+/*Structure générale du formulaire*/
+.auth_container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 440px;
   width: 100%;
   max-width: initial;
   background-color: #faf9f7;
 }
 
-.register_content {
+.auth_content {
   display: flex;
   flex-direction: column;
   padding: 60px 125px;
 }
 
-.register_content h1 {
-  margin-bottom: 45px;
+.auth_content h1 {
+  margin-bottom: 50px;
 }
 
-.register_form {
+.auth_form {
   display: flex;
   flex-direction: column;
   width: 100%;
   max-width: 385px;
 }
 
+/*Champs du formulaire*/
 .form_group {
   display: flex;
   flex-direction: column;
@@ -52,34 +53,65 @@
   border-color: #00ac66;
 }
 
-.register_form .button {
+/*Image du formulaire*/
+.auth_picture {
+  width: 100%;
+  height: 100%;
+}
+
+.auth_picture img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/*Options de connexion*/
+.login_options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px;
+  color: black;
+}
+
+.remember_me {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.remember_me input {
+  width: 16px;
+  height: 16px;
+}
+
+.forgot_password {
+  color: #333;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+/*Boutons*/
+.auth_button {
   display: flex;
   width: 100%;
-  height: 48px;
+  height: 60px;
   margin-top: 5px;
   align-items: center;
   justify-content: center;
   font-size: 16px;
 }
 
+/*Liens entre les formulaires*/
+.login_register,
 .register_login {
   margin-top: 45px;
   font-size: 14px;
 }
 
+.login_register a,
 .register_login a {
   color: #333;
   text-decoration: underline;
-}
-
-.register_picture {
-  width: 100%;
-  height: 100%;
-}
-
-.register_picture img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }

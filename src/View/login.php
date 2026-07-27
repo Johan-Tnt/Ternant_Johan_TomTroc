@@ -4,21 +4,10 @@
 
         <div class="auth_content">
 
-            <h1>Inscription</h1>
+            <h1>Connexion</h1>
 
-            <form class="auth_form" method="POST" action="?route=register">
-            
-                <div class="form_group">
-                    <label for="pseudo">Pseudo</label>
-
-                    <input 
-                        type="text"
-                        id="pseudo"
-                        name="pseudo"
-                        autocomplete="username"
-                        required>
-                </div>
-
+            <form action="#" method="POST" class="auth_form">
+                
                 <div class="form_group">
                     <label for="email">Adresse e-mail</label>
 
@@ -29,7 +18,7 @@
                         autocomplete="email"
                         required>
                 </div>
-            
+
                 <div class="form_group">
                     <label for="password">Mot de passe</label>
 
@@ -41,19 +30,36 @@
                         required>
                 </div>
 
-                <button
-                    type="submit"
-                    class="button button--primary auth_button">
-                    S'inscrire
-                </button>
+                <div class="login_options">
+                    <label class="remember_me">
+
+                        <input 
+                            type="checkbox"
+                            name="remember">
+
+                        <span>Se souvenir de moi</span>
+                    </label>
+
+                    <a href="#" class="forgot_password">
+                        Mot de passe oublié ?
+                    </a>
+
+                    </div>
+
+                    <button 
+                        type="submit"
+                        class="button button--primary auth_button">
+                        Se connecter
+                    </button>
 
             </form>
 
-            <p class="register_login">
-                Déjà Inscrit ?
-                <a href="index.php?route=login">Connectez-vous</a>
+            <p class="login_register">Pas de compte ?
+                <a href="index.php?route=register">
+                    Inscrivez-vous
+                </a>
             </p>
-
+            
         </div>
 
         <div class="auth_picture">
@@ -62,6 +68,7 @@
                 alt="Bibliotèque remplie de livres">
         </div>
 
-   </div>
+
+    </div>
 
 </section>

@@ -39,7 +39,7 @@ $route = $_GET['route'] ?? '';
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="index.php?route=login" class="<?= $route === 'login' ? 'active' : '' ?>">
                         Connexion
                     </a>
                 </li>
