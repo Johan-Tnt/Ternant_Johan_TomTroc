@@ -54,7 +54,7 @@
 
             <p class="written--secondary">Nathan Williams</p>
 
-            <p class="written--secondary">Vendu par : Alexlecture</p>
+            <p class="written--secondary">Vendu par : Natalire</p>
         </article>
     
     </a>

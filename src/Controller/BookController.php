@@ -38,7 +38,7 @@ class BookController
             à créer des souvenirs durables avec les êtres chers. 'The Kinfolk Table' incarne parfaitement l'esprit 
             de la cuisine et de la camaraderie, et il est certain que ce livre trouvera une place spéciale dans 
             le cœur de tout amoureux de la cuisine et des rencontres inspirantes.",
-            "owner" => "Alexlecture"
+            "owner" => "Natalire"
             ]
         ];
 
