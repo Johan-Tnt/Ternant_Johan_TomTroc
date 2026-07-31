@@ -1,5 +1,8 @@
 <?php
 
+//Démarre la session utilisateur
+session_start();
+
 //Charge l'autoload de l'application
 require_once __DIR__ . '/../src/Config/Autoload.php';
 

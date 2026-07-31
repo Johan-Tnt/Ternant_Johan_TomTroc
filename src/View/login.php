@@ -26,7 +26,7 @@
                         type="password"
                         id="password"
                         name="password"
-                        autocomplete="new-password"
+                        autocomplete="current-password"
                         required>
                 </div>
 
@@ -45,6 +45,16 @@
                     </a>
 
                     </div>
+
+                    
+            
+                <?php if (isset($error)) : ?>
+
+                    <p class="error_message">
+                        <?= htmlspecialchars($error) ?>
+                    </p>
+
+                <?php endif; ?>
 
                     <button 
                         type="submit"

@@ -16,7 +16,7 @@ class Router
         $route = $_GET['route'] ?? '';
 
         switch ($route) {
-            case'':
+            case '':
                 (new HomeController())->index();
                 break;
 
@@ -34,6 +34,10 @@ class Router
             
             case 'login':
                 (new AuthController())->login();
+                break;
+
+            case 'logout':
+                (new AuthController())->logout();
                 break;
 
             default:

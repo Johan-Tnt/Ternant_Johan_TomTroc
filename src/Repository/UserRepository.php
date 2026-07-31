@@ -71,6 +71,31 @@ class UserRepository
         return $this->hydrate($data);
     }
 
+    //Enregistre un nouvel utilisateur
+    public function create(User $user): void
+    {
+        $query = $this->connection->prepare(
+            'INSERT INTO users (
+                pseudo, 
+                email, 
+                password,
+                avatar 
+                ) VALUES ( 
+                :pseudo,
+                :email,
+                :password,
+                :avatar 
+            )'
+        );
+
+        $query->execute([
+        'pseudo' => $user->getPseudo(),
+        'email' => $user->getEmail(),
+        'password' => $user->getPassword(),
+        'avatar' => $user->getAvatar()
+        ]);
+    }
+
     //Transforme les données SQL en objet User
     private function hydrate(array $data): User
     {
