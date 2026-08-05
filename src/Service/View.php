@@ -13,13 +13,23 @@ class View extends Singleton
     private const LAYOUT_PATH = __DIR__ . '/../View/Layout/main.php';
 
     //Génère une page complete à partir d'une vue et du layout principal
-    public function render(string $viewName, string $title, array $params = []): void
-    {
+    public function render(
+        string $viewName, 
+        string $title, 
+        array $params = []
+    ): void {
         //Construction du chemin vers la vue demandée
         $viewPath = $this->buildViewPath($viewName);
 
         //Variables utilisées dans main.php
         $content = $this->renderView($viewPath, $params);
+        
+        //Charge auth.css pour les pages de connexion et d'inscription
+        if ($viewName === 'login' || $viewName === 'register') {
+            $pageStyle = 'auth.css';
+        } else {
+            $pageStyle = $viewName . '.css';
+        }
 
         ob_start();
         require self::LAYOUT_PATH;
@@ -27,8 +37,10 @@ class View extends Singleton
     }
 
     //Génère le contenu de la vue demandée
-    private function renderView(string $viewPath, array $params = []): string
-    {
+    private function renderView(
+        string $viewPath, 
+        array $params = []
+    ): string {
         if (!file_exists($viewPath)) {
             throw new Exception("La vue '$viewPath' est introuvable.");
         }

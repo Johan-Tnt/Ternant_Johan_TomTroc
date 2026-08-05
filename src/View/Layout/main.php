@@ -18,12 +18,9 @@
     <link rel="stylesheet" href="assets/css/base/style.css">
     <link rel="stylesheet" href="assets/css/components/header.css">
     <link rel="stylesheet" href="assets/css/components/footer.css">
-    <link rel="stylesheet" href="assets/css/pages/home.css">
     <link rel="stylesheet" href="assets/css/components/button.css">
     <link rel="stylesheet" href="assets/css/components/book-card.css">
-    <link rel="stylesheet" href="assets/css/pages/books.css">
-    <link rel="stylesheet" href="assets/css/pages/book-details.css">    
-    <link rel="stylesheet" href="assets/css/pages/auth.css">
+    <link rel="stylesheet" href="assets/css/pages/<?= $pageStyle ?>">
 </head>
 
 <body>
