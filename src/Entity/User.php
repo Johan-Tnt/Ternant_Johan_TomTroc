@@ -15,6 +15,7 @@ class User
     //Date générée par la base de données
     private string $createdAt;
 
+    //Construit un nouvel utilisateur
     public function __construct(
         string $pseudo,
         string $email,
@@ -34,9 +35,11 @@ class User
     }
 
     //Définit l'identifiant récupéré depuis la base
-    public function setId(int $id): void
+    public function setId(int $id): self
     {
         $this->id = $id;
+
+        return $this;
     }
 
     //USER PSEUDO
@@ -45,9 +48,12 @@ class User
         return $this->pseudo;
     }
 
-    public function setPseudo(string $pseudo): void
+    //Définit le pseudo de l'utilisateur
+    public function setPseudo(string $pseudo): self
     {
         $this->pseudo = $pseudo;
+
+        return $this;
     }
 
     //USER E-MAIL
@@ -56,9 +62,12 @@ class User
         return $this->email;
     }
 
-    public function setEmail(string $email): void
+    //Définit l'adresse e-mail de l'utilisateur
+    public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
     }
 
     //USER PASSWORD
@@ -67,9 +76,12 @@ class User
         return $this->password;
     }
 
-    public function setPassword(string $password): void
+    //Définit le mot de passe de l'utilisateur
+    public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
     }
 
     //USER AVATAR
@@ -78,19 +90,25 @@ class User
         return $this->avatar;
     }
 
-    public function setAvatar(?string $avatar): void
+    //Définit l'avatar de l'utilisateur
+    public function setAvatar(?string $avatar): self
     {
         $this->avatar = $avatar;
+
+        return $this;
     }
 
+    //USER CREATED AT
     public function getCreatedAt(): string
     {
         return $this->createdAt;
     }
 
     //Définit la date récupérée depuis la base
-    public function setCreatedAt(string $createdAt): void
+    public function setCreatedAt(string $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
     }
 }

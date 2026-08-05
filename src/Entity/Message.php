@@ -13,7 +13,8 @@ class Message
 
     //Date générée par la base de données
     private string $createdAt;
-
+    
+    //Construit un nouveau message
     public function __construct(
         int $conversationId,
         int $senderId,
@@ -24,16 +25,18 @@ class Message
         $this->content = $content;
     }
 
-    //MESSAGE
+    //MESSAGE ID
     public function getId(): int
     {
         return $this->id;
     }
 
     //Définit l'identifiant récupéré depuis la base
-    public function setId(int $id): void
+    public function setId(int $id): self
     {
         $this->id = $id;
+
+        return $this;
     }
 
     public function getConversationId(): int
@@ -41,9 +44,11 @@ class Message
         return $this->conversationId;
     }
 
-    public function setConversationId(int $conversationId): void
+    public function setConversationId(int $conversationId): self
     {
         $this->conversationId = $conversationId;
+
+        return $this;
     }
 
     public function getSenderId(): int
@@ -51,9 +56,11 @@ class Message
         return $this->senderId;
     }
 
-    public function setSenderId(int $senderId): void
+    public function setSenderId(int $senderId): self
     {
         $this->senderId = $senderId;
+
+        return $this;
     }
 
     public function getContent(): string
@@ -61,9 +68,11 @@ class Message
         return $this->content;
     }
 
-    public function setContent(string $content): void
+    public function setContent(string $content): self
     {
         $this->content = $content;
+
+        return $this;
     }
 
     public function getCreatedAt(): string
@@ -72,8 +81,10 @@ class Message
     }
 
     //Définit la date récupérée depuis la base
-    public function setCreatedAt(string $createdAt): void
+    public function setCreatedAt(string $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
     }
 }

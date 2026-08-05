@@ -18,6 +18,7 @@ class Book
     private string $createdAt;
     private string $updatedAt;
 
+    //Construit un nouveau livre
     public function __construct(
         int $userId,
         string $title,
@@ -41,9 +42,11 @@ class Book
     }
 
     //Définit l'identifiant récupéré depuis la base
-    public function setId(int $id): void
+    public function setId(int $id): self
     {
         $this->id = $id;
+
+        return $this;
     }
 
     public function getUserId(): int
@@ -51,9 +54,11 @@ class Book
         return $this->userId;
     }
 
-    public function setUserId(int $userId): void
+    public function setUserId(int $userId): self
     {
         $this->userId = $userId;
+
+        return $this;
     }
 
     //BOOK TITLE
@@ -62,9 +67,11 @@ class Book
         return $this->title;
     }
 
-    public function setTitle(string $title): void
+    public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        return $this;
     }
 
     //BOOK AUTHOR
@@ -73,9 +80,11 @@ class Book
         return $this->author;
     }
 
-    public function setAuthor(string $author): void
+    public function setAuthor(string $author): self
     {
         $this->author = $author;
+
+        return $this;
     }
 
     //BOOK DESCRIPTION
@@ -84,9 +93,11 @@ class Book
         return $this->description;
     }
 
-    public function setDescription(?string $description): void
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
     }
 
     //BOOK PICTURE
@@ -95,9 +106,11 @@ class Book
         return $this->picture;
     }
 
-    public function setPicture(?string $picture): void
+    public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
     }
 
     public function getAvailability(): string
@@ -105,9 +118,11 @@ class Book
         return $this->availability;
     }
 
-    public function setAvailability(string $availability): void
+    public function setAvailability(string $availability): self
     {
         $this->availability = $availability;
+
+        return $this;
     }
 
     public function getCreatedAt(): string
@@ -116,9 +131,11 @@ class Book
     }
 
     //Définit la date récupérée depuis la base
-    public function setCreatedAt(string $createdAt): void
+    public function setCreatedAt(string $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
     }
 
     public function getUpdatedAt(): string
@@ -127,8 +144,10 @@ class Book
     }
 
     //Définit la date récupérée depuis la base
-    public function setUpdatedAt(string $updatedAt): void
+    public function setUpdatedAt(string $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
     }
 }
