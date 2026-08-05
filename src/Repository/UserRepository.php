@@ -3,52 +3,13 @@
 namespace App\Repository;
 
 use App\Entity\User;
-use App\Service\Database;
-use PDO;
 
-class UserRepository
+class UserRepository extends AbstractRepository
 {
-    private PDO $connection;
-
-    public function __construct()
+    //Nom de la table utilisée
+    protected function getTableName(): string
     {
-        $this->connection = Database::getInstance()->getConnection();
-    }
-
-    //Récupère tous les utilisateurs
-    public function findAll(): array
-    {
-        $query = $this->connection->query(
-            'SELECT * FROM users ORDER BY created_at DESC'
-        );
-
-        $users = [];
-
-        while ($data = $query->fetch()) {
-            $users[] = $this->hydrate($data);
-        }
-
-        return $users;
-    }
-
-    //Récupère un utilisateur grâce à son identifiant
-    public function findById(int $id): ?User
-    {
-        $query = $this->connection->prepare(
-            'SELECT * FROM users WHERE id = :id'
-        );
-
-        $query->execute([
-            'id' => $id
-        ]);
-
-        $data = $query->fetch();
-
-        if ($data === false) {
-            return null;
-        }
-
-        return $this->hydrate($data);
+        return 'users';
     }
 
     //Recherche un utilisateur grâce à son adresse e-mail
@@ -97,7 +58,7 @@ class UserRepository
     }
 
     //Transforme les données SQL en objet User
-    private function hydrate(array $data): User
+    protected function hydrate(array $data): User
     {
         $user = new User(
             $data['pseudo'],

@@ -1,17 +1,15 @@
 <?php
 
 namespace App\Repository;
+
 use App\Entity\Book;
-use App\Service\Database;
-use PDO;
 
-class BookRepository
+class BookRepository extends AbstractRepository
 {
-    private PDO $connection;
-
-    public function __construct()
+    //Nom de la table utilisée
+    protected function getTableName(): string
     {
-        $this->connection = Database::getInstance()->getConnection();
+        return 'books';
     }
 
     //Récupère tous les livres
@@ -70,8 +68,8 @@ class BookRepository
         return $books;
     }
 
-    //Transforme les données SQL en objet Book.
-    private function hydrate(array $data): Book
+    //Transforme les données SQL en objet Book
+    protected function hydrate(array $data): Book
     {
         $book = new Book(
             (int) $data['user_id'],

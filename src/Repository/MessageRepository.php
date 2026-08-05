@@ -3,16 +3,12 @@
 namespace App\Repository;
 
 use App\Entity\Message;
-use App\Service\Database;
-use PDO;
-
-class MessageRepository
+class MessageRepository  extends AbstractRepository
 {
-    private PDO $connection;
-
-    public function __construct()
+    //Nom de la table utilisée
+    protected function getTableName(): string
     {
-        $this->connection = Database::getInstance()->getConnection();
+        return 'users';
     }
 
     //Récupère un message grâce à son identifiant
@@ -58,7 +54,7 @@ class MessageRepository
     }
 
     //Transforme les données SQL en objet Message
-    private function hydrate(array $data): Message
+    protected function hydrate(array $data): Message
     {
         $message = new Message(
             (int) $data['conversation_id'],

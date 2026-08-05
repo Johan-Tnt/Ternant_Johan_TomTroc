@@ -3,16 +3,13 @@
 namespace App\Repository;
 
 use App\Entity\Conversation;
-use App\Service\Database;
-use PDO;
 
-class ConversationRepository
+class ConversationRepository extends AbstractRepository
 {
-    private PDO $connection;
-
-    public function __construct()
+    //Nom de la table utilisée
+    protected function getTableName(): string
     {
-        $this->connection = Database::getInstance()->getConnection();
+        return 'users';
     }
 
     //Récupère une conversation grâce à son identifiant
@@ -85,7 +82,7 @@ class ConversationRepository
     }
 
     //Transforme les données SQL en objet Conversation
-    private function hydrate(array $data): Conversation
+    protected function hydrate(array $data): Conversation
     {
        $conversation = new Conversation(
             (int) $data['user_one_id'],
