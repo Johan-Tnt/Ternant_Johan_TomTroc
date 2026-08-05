@@ -13,5 +13,4 @@ use App\Service\Router;
 Autoload::register();
 
 //Lance le router
-$router = new Router();
-$router->run();
+Router::getInstance()->run();

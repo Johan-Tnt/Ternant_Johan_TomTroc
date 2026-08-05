@@ -8,7 +8,7 @@ use App\Controller\UserController;
 use App\Controller\AuthController;
 use Exception;
 
-class Router 
+class Router extends Singleton
 {
     //Lance le router 
     public function run(): void
