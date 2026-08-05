@@ -12,11 +12,17 @@ class UserRepository extends AbstractRepository
         return 'users';
     }
 
+    //Nom de l'entité utilisée
+    protected function getEntityClass(): string
+    {
+        return User::class;
+    }
+
     //Recherche un utilisateur grâce à son adresse e-mail
     public function findByEmail(string $email): ?User
     {
         $query = $this->connection->prepare(
-            'SELECT * FROM users WHERE email = :email'
+             'SELECT * FROM ' . $this->getTableName() . ' WHERE email = :email'
         );
 
         $query->execute([
@@ -55,22 +61,5 @@ class UserRepository extends AbstractRepository
         'password' => $user->getPassword(),
         'avatar' => $user->getAvatar()
         ]);
-    }
-
-    //Transforme les données SQL en objet User
-    protected function hydrate(array $data): User
-    {
-        $user = new User(
-            $data['pseudo'],
-            $data['email'],
-            $data['password'],
-            $data['avatar']
-        );
-
-        //Ajoute les données générées par la base
-        $user->setId((int) $data ['id']);
-        $user->setCreatedAt($data['created_at']);
-
-        return $user;
     }
 }

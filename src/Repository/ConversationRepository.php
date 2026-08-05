@@ -9,27 +9,13 @@ class ConversationRepository extends AbstractRepository
     //Nom de la table utilisée
     protected function getTableName(): string
     {
-        return 'users';
+        return 'conversations';
     }
 
-    //Récupère une conversation grâce à son identifiant
-    public function findById(int $id): ?Conversation
+    //Nom de l'entité utilisée
+    protected function getEntityClass(): string
     {
-        $query = $this->connection->prepare(
-            'SELECT * FROM conversations WHERE id = :id'
-        );
-
-        $query->execute([
-            'id' => $id
-        ]);
-
-        $data = $query->fetch();
-
-        if ($data === false) {
-            return null;
-        }
-
-        return $this->hydrate($data);
+        return Conversation::class;
     }
 
     //Récupère toutes les conversations d'un utilisateur
@@ -79,20 +65,5 @@ class ConversationRepository extends AbstractRepository
         }
 
         return $this->hydrate($data);
-    }
-
-    //Transforme les données SQL en objet Conversation
-    protected function hydrate(array $data): Conversation
-    {
-       $conversation = new Conversation(
-            (int) $data['user_one_id'],
-            (int) $data['user_two_id']
-        );
-
-        //Ajoute les données générées par la base
-        $conversation->setId((int) $data['id']);
-        $conversation->setCreatedAt($data['created_at']);
-
-        return $conversation;
     }
 }

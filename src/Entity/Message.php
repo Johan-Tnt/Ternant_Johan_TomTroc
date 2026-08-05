@@ -5,20 +5,20 @@ namespace App\Entity;
 class Message
 {
     //Identifiant généré par la base de données
-    private int $id;
+    private int $id = 0;
     
     private int $conversationId;
     private int $senderId;
     private string $content;
 
     //Date générée par la base de données
-    private string $createdAt;
+    private string $createdAt = '';
     
     //Construit un nouveau message
     public function __construct(
-        int $conversationId,
-        int $senderId,
-        string $content
+        int $conversationId = 0,
+        int $senderId = 0,
+        string $content = ''
     ) {
         $this->conversationId = $conversationId;
         $this->senderId = $senderId;

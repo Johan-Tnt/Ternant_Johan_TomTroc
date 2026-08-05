@@ -8,27 +8,13 @@ class MessageRepository  extends AbstractRepository
     //Nom de la table utilisée
     protected function getTableName(): string
     {
-        return 'users';
+        return 'messages';
     }
 
-    //Récupère un message grâce à son identifiant
-    public function findById(int $id): ?Message
+    //Nom de l'entité utilisée
+    protected function getEntityClass(): string
     {
-        $query = $this->connection->prepare(
-            'SELECT * FROM messages WHERE id = :id'
-        );
-
-        $query->execute([
-            'id' => $id
-        ]);
-
-        $data = $query->fetch();
-
-        if ($data === false) {
-            return null;
-        }
-
-        return $this->hydrate($data);
+        return Message::class;
     }
 
     //Récupère tous les messages d'une conversation
@@ -51,21 +37,5 @@ class MessageRepository  extends AbstractRepository
         }
 
         return $messages;
-    }
-
-    //Transforme les données SQL en objet Message
-    protected function hydrate(array $data): Message
-    {
-        $message = new Message(
-            (int) $data['conversation_id'],
-            (int) $data['sender_id'],
-            $data['content']
-        );
-
-        //Ajoute les données générées par la base
-        $message->setId((int) $data['id']);
-        $message->setCreatedAt($data['created_at']);
-
-        return $message;
     }
 }

@@ -5,7 +5,7 @@ namespace App\Entity;
 class Book
 {
     //Identifiant généré par la base de données
-    private int $id;
+    private int $id = 0;
 
     private int $userId;
     private string $title;
@@ -15,14 +15,14 @@ class Book
     private string $availability;
 
     //Dates générées par la base de données
-    private string $createdAt;
-    private string $updatedAt;
+    private string $createdAt = '';
+    private string $updatedAt = '';
 
     //Construit un nouveau livre
     public function __construct(
-        int $userId,
-        string $title,
-        string $author,
+        int $userId = 0,
+        string $title = '',
+        string $author = '',
         ?string $description = null,
         ?string $picture = null,
         string $availability = 'available'

@@ -6,18 +6,18 @@ namespace App\Entity;
 class Conversation
 {
     //Identifiant généré par la base de données
-    private int $id;
+    private int $id = 0;
     
     private int $userOneId;
     private int $userTwoId;
 
     //Date générée par la base de données
-    private string $createdAt;
+    private string $createdAt = '';
 
     //Construit une nouvelle conversation
     public function __construct(
-        int $userOneId,
-        int $userTwoId
+        int $userOneId = 0,
+        int $userTwoId = 0
     ) {
         $this->userOneId = $userOneId;
         $this->userTwoId = $userTwoId;

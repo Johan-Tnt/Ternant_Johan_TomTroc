@@ -5,7 +5,7 @@ namespace App\Entity;
 class User
 {
     //Identifiant généré par la base de données
-    private int $id;
+    private int $id = 0;
     
     private string $pseudo;
     private string $email;
@@ -13,13 +13,13 @@ class User
     private ?string $avatar;
 
     //Date générée par la base de données
-    private string $createdAt;
+    private string $createdAt = '';
 
     //Construit un nouvel utilisateur
     public function __construct(
-        string $pseudo,
-        string $email,
-        string $password,
+        string $pseudo = '',
+        string $email = '',
+        string $password = '',
         ?string $avatar = null
     ) {
         $this->pseudo = $pseudo;
