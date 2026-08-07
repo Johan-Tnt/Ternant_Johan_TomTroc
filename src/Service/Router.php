@@ -4,7 +4,6 @@ namespace App\Service;
 
 use App\Controller\HomeController;
 use App\Controller\BookController;
-use App\Controller\UserController;
 use App\Controller\AuthController;
 use Exception;
 
@@ -29,7 +28,7 @@ class Router extends Singleton
                 break;
 
             case 'register':
-                (new UserController())->register();
+                (new AuthController())->register();
                 break;
             
             case 'login':
