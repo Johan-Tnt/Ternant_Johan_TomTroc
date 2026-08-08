@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Service\View;
 use App\Repository\UserRepository;
+use App\Entity\User;
 
 class AuthController
 {

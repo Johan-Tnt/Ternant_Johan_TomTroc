@@ -204,12 +204,12 @@
         </article>
 
             <article class="book_card exchange_books">
-            <img src="assets/images/pictures-books/the-two-tower.png" 
-            alt="Couverture du livre The Two Tower">
+            <img src="assets/images/pictures-books/the-two-towers.png" 
+            alt="Couverture du livre The Two Towers">
             
-            <h2>The Two Tower</h2>
+            <h2>The Two Towers</h2>
 
-            <p class="written--secondary">J.R.R R Tolkien</p>
+            <p class="written--secondary">J.R.R Tolkien</p>
 
             <p class="written--secondary">Vendu par : Lotrfanclub67</p>
         </article>
