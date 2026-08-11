@@ -33,56 +33,38 @@
 
     <div class="container home_container">
     
-        <article class="book_card">
-            <img src="assets/images/pictures-books/esther.png" 
-            alt="Couverture du livre Esther">
+        <?php foreach ($latestBooks as $book) : ?>
 
-            <h3>Esther</h3>
-
-            <p class="written--secondary" >Alabaster</p>
-
-            <p class="written--secondary">Vendu par : CamilleClubLit</p>
-        </article>
+        <a  
+            href="index.php?route=book-details&id=<?= $book['id'] ?>"
+            class="book_link"
+        >
 
         <article class="book_card">
-            <img src="assets/images/pictures-books/the-kingfolk-table.png" 
-            alt="Couverture du livre The Kingfolk Table">
 
-            <h3>The Kingfolk Table</h3>
+            <img
+                src="assets/images/pictures-books/<?= htmlspecialchars($book['picture']) ?>"
+                alt="Couverture du livre <?= htmlspecialchars($book['title']) ?>"
+            >
 
-            <p class="written--secondary">Nathan Williams</p>
+            <h3>
+                <?= htmlspecialchars($book['title']) ?>
+            </h3>
 
-            <p class="written--secondary">Vendu par : Natalire</p>
+            <p class="written--secondary">
+                <?= htmlspecialchars($book['author']) ?>
+            </p>
+
+            <p class="written--secondary">
+                Vendu par :
+                <?= htmlspecialchars($book['pseudo']) ?>
+            </p>
+
         </article>
 
-        <article class="book_card">
-            <img src="assets/images/pictures-books/wabi-sabi.png" 
-            alt="Couverture du livre Wabi Sabi">
-            
-            <h3>Wabi Sabi</h3>
-
-            <p class="written--secondary">Beth Kempton</p>
-
-            <p class="written--secondary">Vendu par : Alexlecture</p>
-        </article>
-
-        <article class="book_card">
-            <img src="assets/images/pictures-books/milk-and-honey.png" 
-            alt="Couverture du livre Milk & Honey">
-            
-            <h3>Milk & Honey</h3>
-
-            <p class="written--secondary">Rupi Kaur</p>
-
-            <p class="written--secondary">Vendu par : Hugo1990_12</p>
-        </article>
-
-    </div>
-
-    <div class="books_look">
-        <a href="/books" class="button button--primary button_home">
-            Voir tous les livres
         </a>
+
+        <?php endforeach; ?>
     </div>
 </section>
 
