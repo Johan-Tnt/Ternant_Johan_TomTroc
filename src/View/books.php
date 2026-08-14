@@ -42,6 +42,14 @@
                     src="assets/images/pictures-books/<?= htmlspecialchars($book['picture']) ?>"
                     alt="Couverture du livre <?= htmlspecialchars($book['title']) ?>"
                 >
+                
+                <?php if ($book['availability'] === 'unavailable') : ?>
+
+                    <span class="button button--tertiary button_unavailable">
+                        non dispo.
+                    </span>
+
+                <?php endif; ?>
 
                 <h2>
                     <?= htmlspecialchars($book['title']) ?>
