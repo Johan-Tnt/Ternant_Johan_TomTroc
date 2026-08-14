@@ -1,4 +1,18 @@
 /*Contient le style global de la page Détails d'un livre*/
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  top: 30px;
+  position: relative;
+  color: #afacac;
+}
+
+.breadcrumb a {
+  color: #afacac;
+  text-decoration: none;
+}
 
 .book_details {
   margin: auto;

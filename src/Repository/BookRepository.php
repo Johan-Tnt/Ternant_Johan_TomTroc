@@ -60,6 +60,33 @@ class BookRepository extends AbstractRepository
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    //Rechercher des livres avec leur vendeur
+    public function searchWithUsers(string $search): array
+    {
+        $query =$this->connection->prepare(
+            'SELECT
+            books.id,
+            books.title,
+            books.author,
+            books.description,
+            books.picture,
+            books.availability,
+            users.pseudo
+            FROM books
+            INNER JOIN users
+            ON books.user_id = users.id
+            WHERE books.title LIKE :search
+            OR books.author LIKE :search
+            ORDER BY books.created_at DESC'
+        );
+
+        $query->execute([
+            'search' => '%' . $search . '%'
+        ]);
+
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     //Récupère un livre avec son propriétaire
     public function findOneWithUser(int $id): ?array
     {

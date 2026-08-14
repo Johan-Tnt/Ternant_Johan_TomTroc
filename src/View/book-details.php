@@ -1,3 +1,16 @@
+<!-- BREADCRUMB -->
+<div class="container breadcrumb">
+    <a href="index.php?route=books">
+        Nos livres
+    </a>
+
+    <span aria-hidden="true">></span>
+
+    <span>
+        <?= htmlspecialchars($book['title']) ?>
+    </span>
+</div>
+
 <section class="book_details">
 
     <div class="container book_details_container">

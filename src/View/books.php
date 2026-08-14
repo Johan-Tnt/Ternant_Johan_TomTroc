@@ -4,17 +4,21 @@
 
         <h1>Nos Livres à l'échange</h1>
 
-        <form class="search_form" action="#" method="get">
+        <form class="search_form" action="index.php" method="get">
+
+            <input type="hidden" name="route" value="books">
 
             <div class="search_input">
 
-                <i class="fa-solid fa-magnifying-glass  search_icon"></i>
+                <i class="fa-solid fa-magnifying-glass search_icon"></i>
 
                 <input
                     class="search_field"
                     type="search"
                     name="search"
-                    placeholder="Rechercher un livre">
+                    placeholder="Rechercher un livre"
+                    value="<?=htmlspecialchars($_GET['search'] ?? '') ?>"
+                >
             
             </div>
 

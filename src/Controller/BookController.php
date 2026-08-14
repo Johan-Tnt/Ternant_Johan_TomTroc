@@ -9,15 +9,21 @@ class BookController
 {
     public function index(): void
     {
-    $bookRepository = new BookRepository();
+        $bookRepository = new BookRepository();
 
-    $books = $bookRepository->findAllWithUsers();
+        $search = trim($_GET['search'] ?? '');
+
+        if ($search !== '') {
+            $books = $bookRepository->searchWithUsers($search);
+        } else {
+            $books = $bookRepository->findAllWithUsers();
+        }
 
         View::getInstance()->render(
             'books',
             'Nos livres',
             [
-            'books' => $books
+                'books' => $books
             ]
         );
     }
