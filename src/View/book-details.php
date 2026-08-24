@@ -44,7 +44,7 @@
             <div class="owner_card">
 
                 <img
-                    src="assets/images/avatars/david-lezcano.png"
+                    src="assets/images/avatars/<?= htmlspecialchars($book['avatar']) ?>"
                     alt="Photo de <?= htmlspecialchars($book['pseudo']) ?>"
                     class="owner_avatar"
                 >
@@ -54,10 +54,31 @@
                 </p>
 
             </div>
+            
+            <?php if (
+                !isset($_SESSION['user_id'])
+                || (int) $_SESSION['user_id'] !== (int) $book['user_id']
+            ) : ?>
 
-            <a href="#" class="button button--primary book_button">
-                Envoyer un message
-            </a>
+                <a href="#" class="button button--primary book_button">
+                    Envoyer un message
+                </a>
+
+            <?php endif; ?>
+
+            <?php if (
+                isset($_SESSION['user_id'])
+                && (int) $_SESSION['user_id'] === (int) $book['user_id']
+            ) : ?>
+
+                <a
+                    href="index.php?route=book-edit&id=<?= $book['id'] ?>"
+                    class="button button--primary book_button"
+                >
+                    Modifier le livre
+                </a>
+
+            <?php endif; ?>
 
         </div>
 

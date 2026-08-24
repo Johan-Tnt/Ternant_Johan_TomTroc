@@ -1,0 +1,182 @@
+/*Contient le style global de Edition et Ajout d'un livre*/
+/*Formulaire d'ajout et d'éditon d'un livre*/
+.book_form_section {
+  padding: 25px 0 70px;
+}
+
+/*En-tête du formulaire*/
+.book_form_header {
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+.back_link {
+  display: inline-block;
+  margin-bottom: 30px;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.back_link:hover {
+  color: #000;
+}
+
+.book_form_section h1 {
+  margin: 0 0 25px;
+  font-family: "Playfair Display", serif;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #000;
+}
+
+/*Bloc principal*/
+.book_form_container {
+  display: flex;
+  align-items: flex-start;
+  /*width: 100%;*/
+  max-width: 1050px;
+  min-height: 470px;
+  margin: 0 auto;
+  padding: 40px 55px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 12px;
+}
+
+/*Formulaire*/
+.book_form {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  gap: 55px;
+}
+
+.book_form .button--primary {
+  display: block;
+  width: 50%;
+  height: 42px;
+  margin-top: 8px;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.book_form_fields {
+  width: 100%;
+  max-width: 550px;
+  margin-top: 20px;
+}
+
+/*Message d'erreur*/
+.form_error {
+  width: 100%;
+  max-width: 550px;
+  margin: 0 0 25px;
+  padding: 12px 15px;
+  box-sizing: border-box;
+  border: 1px solid #c0392b;
+  background-color: #fdf0ef;
+  color: #c0392b;
+  font-size: 13px;
+}
+
+/*Groupe de champ*/
+.form_group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 22px;
+}
+
+/*Labels*/
+.form_group label {
+  margin-bottom: 7px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/*Champs*/
+.form_group input,
+.form_group textarea,
+.form_group select {
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 4px;
+  background-color: #edf2f5;
+  color: #333;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  outline: none;
+}
+
+/*Inputs et select*/
+.form_group input,
+.form_group select {
+  height: 42px;
+  padding: 0 12px;
+}
+
+/*Zone de description*/
+.form_group textarea {
+  width: 100%;
+  height: 220px;
+  padding: 12px;
+  box-sizing: border-box;
+  resize: none;
+  overflow-y: auto;
+  line-height: 1.45;
+  scrollbar-width: none;
+  /*resize: vertical;*/
+}
+
+.form_group textarea::-webkit-scrollbar {
+  display: none;
+}
+
+/*Focus*/
+.form_group input:focus,
+.form_group textarea:focus,
+.form_group select:focus {
+  background-color: #e7eef2;
+  box-shadow: inset 0 0 0 1px #cfd8dc;
+}
+
+/*Photo du livre*/
+.book_form_photo {
+  max-width: 488px;
+  /*padding-right: 40px;*/
+  width: 100%;
+  flex-shrink: 0;
+  margin-top: 20px;
+}
+
+.book_form_label {
+  margin: 0 0 7px;
+  font-size: 14px;
+}
+
+.book_form_photo img {
+  display: block;
+  width: 100%;
+  height: 488px;
+  object-fit: cover;
+}
+
+.book_photo_link {
+  display: block;
+  width: fit-content;
+  margin-top: 20px;
+  margin-left: auto;
+  color: #333;
+  font-size: 12px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.book_photo_link:hover {
+  color: #00b564;
+}

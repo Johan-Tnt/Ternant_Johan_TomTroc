@@ -4,6 +4,22 @@
 
         <h1>Nos Livres à l'échange</h1>
 
+        
+        <?php if (isset($_SESSION['user_id'])) : ?>
+
+            <div class="books_add">
+
+                <a
+                    href="index.php?route=book-add"
+                    class="button button--primary"
+                >
+                    Ajouter un livre
+                </a>
+
+            </div>
+
+        <?php endif; ?>
+
         <form class="search_form" action="index.php" method="get">
 
             <input type="hidden" name="route" value="books">

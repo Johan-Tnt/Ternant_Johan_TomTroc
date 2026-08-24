@@ -27,6 +27,14 @@ class Router extends Singleton
                 (new BookController())->show();
                 break;
 
+            case 'book-add':
+                (new BookController())->create();
+                 break;
+
+            case 'book-edit':
+                (new BookController())->edit();
+                break;
+
             case 'register':
                 (new AuthController())->register();
                 break;

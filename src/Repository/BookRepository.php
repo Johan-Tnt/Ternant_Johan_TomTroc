@@ -116,7 +116,7 @@ class BookRepository extends AbstractRepository
         return $book ?: null;
     }
 
-    // Récupère les 4 derniers livres avec leur propriétaire
+    //Récupère les 4 derniers livres avec leur propriétaire
     public function findLatestWithUsers(int $limit = 4): array
     {
         $query = $this->connection->query(
@@ -136,5 +136,65 @@ class BookRepository extends AbstractRepository
         );
 
         return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    //Crée un nouveau livre
+    public function create(
+        int $userId,
+        string $title,
+        string $author,
+        ?string $description,
+        ?string $picture,
+        string $availability
+    ): bool {
+        $query = $this->connection->prepare(
+            'INSERT INTO books
+            (user_id, title, author, description, picture, availability)
+            VALUES
+            (:user_id, :title, :author, :description, :picture, :availability)'
+        );
+
+        return $query->execute([
+            'user_id' => $userId,
+            'title' => $title,
+            'author' => $author,
+            'description' => $description,
+            'picture' => $picture,
+            'availability' => $availability
+        ]);
+    }
+
+
+    //Modifie un livre
+    public function update(
+        int $id,
+        int $userId,
+        string $title,
+        string $author,
+        ?string $description,
+        ?string $picture,
+        string $availability
+    ): bool {
+        $query = $this->connection->prepare(
+            'UPDATE books
+            SET
+                title = :title,
+                author = :author,
+                description = :description,
+                picture = :picture,
+                availability = :availability
+            WHERE id = :id
+            AND user_id = :user_id'
+        );
+
+        return $query->execute([
+            'id' => $id,
+            'user_id' => $userId,
+            'title' => $title,
+            'author' => $author,
+            'description' => $description,
+            'picture' => $picture,
+            'availability' => $availability
+        ]);
     }
 }
