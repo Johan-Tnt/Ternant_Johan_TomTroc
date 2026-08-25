@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Service\View;
 use App\Repository\BookRepository;
+use App\Service\ImageService;
 
 class BookController
 {
@@ -89,7 +90,9 @@ class BookController
                 return;
             }
 
-            $picture = $this->uploadPicture();
+            $imageService = new ImageService();
+
+            $picture = $imageService->upload();
 
             $bookRepository->create(
                 $userId,
@@ -179,25 +182,21 @@ class BookController
                 return;
             }
 
-            //Charge une nouvelle image
-            $picture = $this->uploadPicture();
+            $imageService = new ImageService();
 
-            //Si une nouvelle image a été ajoutée, on supprime l'ancienne image
+            //Charge une nouvelle image
+            $picture = $imageService->upload();
+
+            //Si une nouvelle image a été ajoutée
             if ($picture !== null) {
 
-                $oldPicturePath = 
-                    __DIR__ . '/../../public/assets/images/pictures-books/'
-                    . $book['picture'];
-               
-                if (
-                    !empty($book['picture'])
-                    && file_exists($oldPicturePath)
-                ) {
-                    unlink($oldPicturePath);
-                }
-
+                //Supprime l'ancienne image
+                $imageService->delete(
+                    $book['picture']
+                );
             } else {
-                //Si aucune nouvelle image n'est sélectionnée, on conserve l'ancienne image
+
+                //Consevre l'ancienne image
                 $picture = $book['picture'];
             }
 
@@ -228,62 +227,5 @@ class BookController
                 'formAction' => 'book-edit&id=' . $id
             ]
         );
-    }
-
-    //Enregistre une image dans le dossier des livres
-    private function uploadPicture(): ?string
-    {
-        if (
-            !isset($_FILES['picture'])
-            || $_FILES['picture']['error'] === UPLOAD_ERR_NO_FILE
-        ) {
-            return null;
-        }
-
-        if ($_FILES['picture']['error'] !== UPLOAD_ERR_OK) {
-            return null;
-        }
-
-        //Taille maximale : 5 Mo
-        $maxFileSize = 5 * 1024 * 1024;
-
-        if ($_FILES['picture']['size'] > $maxFileSize) {
-            return null;
-        }
-
-        $allowedTypes = [
-            'image/jpeg' => 'jpg',
-            'image/png' => 'png',
-            'image/webp' => 'webp'
-        ];
-
-        $filesType = mime_content_type(
-            $_FILES['picture']['tmp_name']
-        );
-
-        if (!isset($allowedTypes[$filesType])) {
-            return null;
-        }
-
-        $fileName = uniqid() . '.' . $allowedTypes[$filesType];
-
-        $uploadDirectory =
-            __DIR__ . '/../../public/assets/images/pictures-books/';
-
-        if (!is_dir($uploadDirectory)) {
-            mkdir($uploadDirectory, 0777, true);
-        }
-
-        $uploadPath = $uploadDirectory . $fileName;
-
-        
-        if (!move_uploaded_file(
-            $_FILES['picture']['tmp_name'],
-            $uploadPath
-        )) {
-            return null;
-        }
-
-        return $fileName;
     }
 }
