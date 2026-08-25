@@ -7,6 +7,19 @@ use PDO;
 
 class BookRepository extends AbstractRepository
 {
+    private const BOOK_WITH_USER_QUERY = 
+    'SELECT
+        books.id,
+        books.title,
+        books.author,
+        books.description,
+        books.picture,
+        books.availability,
+        users.pseudo
+    FROM books
+    INNER JOIN users
+    ON books.user_id = users.id';
+
     //Nom de la table utilisée
     protected function getTableName(): string
     {
@@ -43,19 +56,9 @@ class BookRepository extends AbstractRepository
     public function findAllWithUsers(): array
     {
         $query = $this->connection->query(
-           'SELECT
-            books.id,
-            books.title,
-            books.author,
-            books.description,
-            books.picture,
-            books.availability,
-            users.pseudo
-        FROM books
-        INNER JOIN users
-        ON books.user_id = users.id
-        ORDER BY books.created_at DESC'
-    );
+            self::BOOK_WITH_USER_QUERY
+            . ' ORDER BY books.created_at DESC'
+        );
 
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -63,26 +66,16 @@ class BookRepository extends AbstractRepository
     //Rechercher des livres avec leur vendeur
     public function searchWithUsers(string $search): array
     {
-        $query =$this->connection->prepare(
-            'SELECT
-            books.id,
-            books.title,
-            books.author,
-            books.description,
-            books.picture,
-            books.availability,
-            users.pseudo
-            FROM books
-            INNER JOIN users
-            ON books.user_id = users.id
-            WHERE books.title LIKE :search
-            OR books.author LIKE :search
-            ORDER BY books.created_at DESC'
-        );
+        $query = $this->connection->prepare(
+            self::BOOK_WITH_USER_QUERY
+            . ' WHERE books.title LIKE :search
+                OR books.author LIKE :search
+                ORDER BY books.created_at DESC'
+    );
 
-        $query->execute([
-            'search' => '%' . $search . '%'
-        ]);
+    $query->execute([
+        'search' => '%' . $search . '%'
+    ]);
 
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -119,19 +112,11 @@ class BookRepository extends AbstractRepository
     //Récupère les 4 derniers livres avec leur propriétaire
     public function findLatestWithUsers(int $limit = 4): array
     {
+        $limit = max(1, $limit);
+
         $query = $this->connection->query(
-            'SELECT
-                books.id,
-                books.title,
-                books.author,
-                books.description,
-                books.picture,
-                books.availability,
-                users.pseudo
-            FROM books
-            INNER JOIN users
-            ON books.user_id = users.id
-            ORDER BY books.created_at DESC
+            self::BOOK_WITH_USER_QUERY
+            . ' ORDER BY books.created_at DESC
             LIMIT ' . $limit
         );
 
