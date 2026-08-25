@@ -182,8 +182,22 @@ class BookController
             //Charge une nouvelle image
             $picture = $this->uploadPicture();
 
-            //Si aucune nouvelle image n'est sélectionnée, on conserve l'ancienne image
-            if ($picture === null) {
+            //Si une nouvelle image a été ajoutée, on supprime l'ancienne image
+            if ($picture !== null) {
+
+                $oldPicturePath = 
+                    __DIR__ . '/../../public/assets/images/pictures-books/'
+                    . $book['picture'];
+               
+                if (
+                    !empty($book['picture'])
+                    && file_exists($oldPicturePath)
+                ) {
+                    unlink($oldPicturePath);
+                }
+
+            } else {
+                //Si aucune nouvelle image n'est sélectionnée, on conserve l'ancienne image
                 $picture = $book['picture'];
             }
 
