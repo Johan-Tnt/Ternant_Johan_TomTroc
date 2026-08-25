@@ -67,10 +67,29 @@ class BookController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $title = trim($_POST['title'] ?? '');
-            $author = trim($_POST['author'] ?? '');
-            $description = trim($_POST['description'] ?? '');
+            $title = strip_tags(
+                trim($_POST['title'] ?? '')
+            );
+
+            $author = strip_tags(
+                trim($_POST['author'] ?? '')
+            );
+
+            $description = strip_tags(
+                trim($_POST['description'] ?? '')
+            );
+            
             $availability = $_POST['availability'] ?? 'available';
+
+            if (
+                !in_array(
+                    $availability,
+                    ['available', 'unavailable'],
+                    true
+                )
+            ) { 
+                $availability ='available';
+            }
 
             $userId = (int) $_SESSION['user_id'];
 
@@ -118,7 +137,6 @@ class BookController
         );
     }
 
-
     //Affiche le formulaire de modification d'un livre
     public function edit(): void
     {
@@ -161,10 +179,29 @@ class BookController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $title = trim($_POST['title'] ?? '');
-            $author = trim($_POST['author'] ?? '');
-            $description = trim($_POST['description'] ?? '');
+            $title = strip_tags(
+                trim($_POST['title'] ?? '')
+            );
+
+            $author = strip_tags(
+                trim($_POST['author'] ?? '')
+            );
+
+            $description = strip_tags(
+                trim($_POST['description'] ?? '')
+            );
+            
             $availability = $_POST['availability'] ?? 'available';
+
+            if (
+                !in_array(
+                    $availability,
+                    ['available', 'unavailable'],
+                    true
+                )
+            ) { 
+                $availability ='available';
+            }
 
             if ($title === '' || $author === '') {
 
