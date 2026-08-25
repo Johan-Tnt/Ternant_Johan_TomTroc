@@ -27,6 +27,10 @@ class View extends Singleton
         //Charge auth.css pour les pages de connexion et d'inscription
         if ($viewName === 'login' || $viewName === 'register') {
             $pageStyle = 'auth.css';
+
+        } elseif ($viewName === '403' || $viewName === '404') {
+            $pageStyle = 'error.css';
+
         } else {
             $pageStyle = $viewName . '.css';
         }
