@@ -230,6 +230,13 @@ class BookController
             return null;
         }
 
+        //Taille maximale : 5 Mo
+        $maxFileSize = 5 * 1024 * 1024;
+
+        if ($_FILES['picture']['size'] > $maxFileSize) {
+            return null;
+        }
+
         $allowedTypes = [
             'image/jpeg' => 'jpg',
             'image/png' => 'png',
