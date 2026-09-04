@@ -28,7 +28,9 @@
                 </p>
 
                 <img
-                    src="assets/images/pictures-books/<?= htmlspecialchars($book['picture'] ?? '') ?>"
+                    src="assets/images/pictures-books/<?= htmlspecialchars(
+                        $book['picture'] ?? 'default-book.jpg'
+                    ) ?>"
                     alt="Couverture du livre <?= htmlspecialchars($book['title'] ?? '') ?>"
                 >
 

@@ -35,6 +35,10 @@ class Router extends Singleton
                 (new BookController())->edit();
                 break;
 
+            case 'book-delete':
+                (new BookController())->delete();
+                break;
+
             case 'register':
                 (new AuthController())->register();
                 break;
@@ -46,6 +50,15 @@ class Router extends Singleton
             case 'logout':
                 (new AuthController())->logout();
                 break;
+
+            case 'account':
+               (new AuthController())->account();
+                break;
+
+            case 'account-update':
+                (new AuthController())->update();
+                break;
+ 
 
             default:
                 throw new Exception('Page not found.');

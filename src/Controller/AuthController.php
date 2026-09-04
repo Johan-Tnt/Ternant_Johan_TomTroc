@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Service\View;
 use App\Repository\UserRepository;
 use App\Entity\User;
+use App\Repository\BookRepository;
 
 class AuthController
 {
@@ -150,6 +151,220 @@ class AuthController
 
         //Redirige vers l'accueil
         header('Location: index.php');
+        exit;
+    }
+
+    //Affiche la page du compte utilisateur
+    public function account(): void
+    {
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: index.php?route=login');
+            exit;
+        }
+
+        $userRepository = new UserRepository;
+        $bookRepository = new BookRepository;
+
+        $userId = (int) $_SESSION['user_id'];
+
+        $user = $userRepository->findById($userId);
+
+        if ($user == null) {
+            session_unset();
+            session_destroy();
+
+            header('Location: index.php?route=login');
+            exit;
+        }
+
+        $books = $bookRepository->findByUserId($userId);
+
+        View::getInstance()->render(
+            'account',
+            'Mon compte',
+            [
+                'user' => $user,
+                'books' => $books,
+                'bookCount' => count($books)
+            ]
+        );
+    }
+
+    //Met à jour les informations du compte
+    public function update(): void
+    {
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: index.php?route=login');
+            exit;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            header('Location: index.php?route=account');
+            exit;
+        }
+
+        $userRepository = new UserRepository();
+        $bookRepository = new BookRepository();
+
+        $userId = (int) $_SESSION['user_id'];
+
+        $user = $userRepository->findById($userId);
+
+        if ($user === null) {
+            session_unset();
+            session_destroy();
+
+            header('Location: index.php?route=login');
+            exit;
+        }
+
+        $books = $bookRepository->findByUserId($userId);
+
+        //Gestion du nouvel avatar
+        if (
+            isset($_FILES['avatar'])
+            && $_FILES['avatar']['error'] === UPLOAD_ERR_OK
+        ) {
+            $allowedTypes = [
+                'image/jpeg',
+                'image/png',
+                'image/webp'
+            ];
+
+            $fileType = mime_content_type(
+                $_FILES['avatar']['tmp_name']
+             );
+
+            if (!in_array($fileType, $allowedTypes, true)) {
+                View::getInstance()->render(
+                    'account',
+                    'Mon compte',
+                    [
+                        'user' => $user,
+                        'books' => $books,
+                        'bookCount' => count($books),
+                        'error' => 'Le format de l’image n’est pas valide.'
+                    ]
+                );
+
+                return;
+            }
+
+            $extension = match ($fileType) {
+                'image/jpeg' => 'jpg',
+                'image/png' => 'png',
+                'image/webp' => 'webp'
+            };
+
+            $avatarName = uniqid('avatar_', true) . '.' . $extension;
+
+            $avatarPath = __DIR__
+                . '/../../public/assets/images/avatars/'
+                . $avatarName;
+
+            if (
+                !move_uploaded_file(
+                    $_FILES['avatar']['tmp_name'],
+                    $avatarPath
+                )
+            ) {
+                View::getInstance()->render(
+                    'account',
+                    'Mon compte',
+                    [
+                        'user' => $user,
+                        'books' => $books,
+                        'bookCount' => count($books),
+                        'error' => 'Impossible d’enregistrer l’image.'
+                    ]
+                );
+
+                return;
+            }
+
+            //Supprime l'ancien avatar
+            if (!empty($user->getAvatar()) 
+                && $user->getAvatar() !== 'default-avatar.jpg'
+            ) {
+                $oldAvatarPath = __DIR__
+                    . '/../../public/assets/images/avatars/'
+                    . $user->getAvatar();
+
+                if (
+                    file_exists($oldAvatarPath)
+                    && is_file($oldAvatarPath)
+                ) {
+                    unlink($oldAvatarPath);
+                }
+            }
+
+            $user->setAvatar($avatarName);
+
+            $userRepository->update($user);
+
+            header('Location: index.php?route=account');
+            exit;
+        }
+
+        //Modification des informations personnelles
+        $pseudo = trim($_POST['pseudo'] ?? '');
+        $email = trim($_POST['email'] ?? '');
+        $password = $_POST['password'] ?? '';
+
+        if ($pseudo === '' || $email === '') {
+            View::getInstance()->render(
+                'account',
+                'Mon compte',
+                [
+                    'user' => $user,
+                    'books' => $books,
+                    'bookCount' => count($books),
+                    'error' => 'Le pseudo et l’adresse e-mail sont obligatoires.'
+                ]
+            );
+
+            return;
+        }
+
+        //Vérifie que l'adresse e-mail n'est pas déjà utilisée
+        $existingUser = $userRepository->findByEmail($email);
+
+        if (
+            $existingUser !== null
+            && $existingUser->getId() !== $userId
+        ) {
+            View::getInstance()->render(
+                'account',
+                'Mon compte',
+                [
+                    'user' => $user,
+                    'books' => $books,
+                    'bookCount' => count($books),
+                    'error' => 'Cette adresse e-mail est déjà utilisée.'
+                ]
+                );
+
+            return;
+        }
+
+        //Modifie le mot de passe uniquement s'il a été renseigné
+        if ($password !== '') {
+            $user->setPassword(
+                password_hash(
+                    $password,
+                    PASSWORD_DEFAULT
+                )
+            );
+        }
+
+        $user->setPseudo($pseudo);
+        $user->setEmail($email);
+
+        $userRepository->update($user);
+
+        $_SESSION['pseudo'] = $user->getPseudo();
+
+        header('Location: index.php?route=account');
         exit;
     }
 }

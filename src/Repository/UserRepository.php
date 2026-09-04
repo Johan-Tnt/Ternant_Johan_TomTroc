@@ -38,6 +38,26 @@ class UserRepository extends AbstractRepository
         return $this->hydrate($data);
     }
 
+    //Recherche un utilisateur grâce à son identifiant
+    public function findById(int $id): ?User
+    {
+        $query = $this->connection->prepare(
+            'SELECT * FROM ' . $this->getTableName() . ' WHERE id = :id'
+        );
+
+        $query->execute([
+            'id' => $id
+        ]);
+
+        $data = $query->fetch();
+
+        if ($data === false) {
+            return null;
+        }
+
+        return $this->hydrate($data);
+    }
+
     //Enregistre un nouvel utilisateur
     public function create(User $user): void
     {
@@ -60,6 +80,28 @@ class UserRepository extends AbstractRepository
         'email' => $user->getEmail(),
         'password' => $user->getPassword(),
         'avatar' => $user->getAvatar()
+        ]);
+    }
+
+    //Met à jour les informations d'un utilisateur
+    public function update(User $user): bool
+    {
+        $query = $this->connection->prepare(
+            'UPDATE users
+            SET
+                pseudo = :pseudo,
+                email = :email,
+                password = :password,
+                avatar = :avatar
+            WHERE id = :id'
+        );
+
+        return $query->execute([
+            'id' => $user->getId(),
+            'pseudo' => $user->getPseudo(),
+            'email' => $user->getEmail(),
+            'password' => $user->getPassword(),
+            'avatar' => $user->getAvatar()
         ]);
     }
 }

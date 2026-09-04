@@ -36,7 +36,9 @@ $route = $_GET['route'] ?? '';
                 <?php if (isset($_SESSION['user_id'])): ?>
 
                     <li>
-                        <a href="#">
+                        <a href="index.php?route=account"
+                            class="<?= $route === 'account' ? 'active' : '' ?>"
+                        >
                             <?= htmlspecialchars($_SESSION['pseudo']) ?>
                         </a>
                     </li>

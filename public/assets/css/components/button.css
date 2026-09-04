@@ -34,6 +34,12 @@
   border: 1px solid #00ac66;
 }
 
+/*Bouton contour vert clair avec fond gris clair*/
+.button--outline--account {
+  color: #00ac66;
+  border: 1px solid #00ac66;
+}
+
 /*Les boutons de la page home*/
 .button_home {
   /*display: inline-block;*/

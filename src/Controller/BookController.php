@@ -130,7 +130,9 @@ class BookController
             'book-form',
             'Ajouter un livre',
             [
-                'book' => null,
+                'book' => [
+                    'picture' => 'default-book.jpg'
+                ],
                 'formTitle' => 'Ajouter un livre',
                 'formAction' => 'book-add'
             ]
@@ -264,5 +266,67 @@ class BookController
                 'formAction' => 'book-edit&id=' . $id
             ]
         );
+    }
+
+    //Supprime un livre 
+    public function delete(): void
+    {
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: index.php?route=login');
+            exit;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            header('Location: index.php?route=account');
+            exit;
+        }
+
+        $bookRepository = new BookRepository();
+        $imageService = new ImageService();
+
+        $userId = (int) $_SESSION['user_id'];
+        $id = (int) ($_POST['id'] ?? 0);
+
+        $book = $bookRepository->findOneWithUser($id);
+
+        if ($book === null) {
+            http_response_code(404);
+
+            View::getInstance()->render(
+                '404',
+                'Livre introuvable'
+            );
+
+            return;
+        }
+
+        //Verifie que l'utlisateur connecté est le propriétaire du livre
+        if ((int) $book['user_id'] !== $userId) {
+            http_response_code(403);
+
+            View::getInstance()->render(
+                '403',
+                'Accès refusé'
+            );
+
+            return;
+        }
+
+        //Supprime l'image  du livre
+        if (!empty($book['picture'])) {
+                $imageService->delete(
+                    $book['picture']
+                );
+        }
+
+        //Supprime le livre de la base de données
+        $bookRepository->delete(
+            $id,
+            $userId
+        );
+
+        //Retourne sur la page du compte
+        header('Location: index.php?route=account');
+        exit;
     }
 }

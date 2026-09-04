@@ -182,4 +182,19 @@ class BookRepository extends AbstractRepository
             'availability' => $availability
         ]);
     }
+    //Supprime un livre appartenant à un utilisateur
+    public function delete(int $id, int $userId): bool
+    {
+        $query = $this->connection->prepare(
+            'DELETE FROM books
+            WHERE id = :id
+            AND user_id = :user_id'
+        );
+
+        return $query->execute([
+            'id' => $id,
+            'user_id' => $userId
+        ]);
+        //user_id est important car si quelqu'un essaie de changer l'ID du livre, il ne pourra supprimer que ses livres.
+    }
 }

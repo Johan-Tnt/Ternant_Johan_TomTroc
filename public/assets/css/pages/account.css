@@ -1,0 +1,252 @@
+/*Contient le style global de la page Mon compte*/
+/*Page mon compte*/
+.account_section {
+  padding: 45px 0 70px;
+}
+
+.account_container {
+  max-width: 1050px;
+}
+
+.account_section h1 {
+  margin-bottom: 35px;
+  font-family: "Playfair Display", serif;
+  font-size: 26px;
+  font-weight: 400;
+}
+
+/*Partie supérieur*/
+.account_content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+/*Carte profil*/
+.account_profile,
+.account_information {
+  padding: 40px 95px;
+  background-color: #ffffff;
+  border-radius: 12px;
+}
+
+.account_profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.account_avatar_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.account_avatar {
+  display: block;
+  width: 135px;
+  height: 135px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.account_avatar_edit {
+  display: block;
+  margin-top: 5px;
+  border: none;
+  background: none;
+  color: #777;
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.account_profile_separator {
+  width: 50%;
+  margin: 25px 0;
+  border-top: 1px solid #eeeeee;
+}
+
+.account_profile h2 {
+  margin: 0 0 8px;
+  font-family: "Playfair Display", serif;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.account_profile p {
+  font-size: 14px;
+}
+
+.account_books_count {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 20px;
+  font-size: 12px;
+  flex-direction: column;
+}
+
+.account_books_label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.account_books_info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.account_books_icon {
+  font-size: 17px;
+}
+
+/*Informations*/
+.account_information h2 {
+  margin: 0 0 25px;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.account_form {
+  width: 100%;
+}
+
+.account_form .form_group {
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+.account_form input {
+  height: 50px;
+  background-color: #edf2f5;
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 4px;
+  color: #333;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  outline: none;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+.account_button {
+  height: 63px;
+  width: 150px;
+  padding: 13px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/*Livres*/
+.account_books {
+  overflow: hidden;
+  background-color: #ffffff;
+  border-radius: 12px;
+}
+
+.account_books_table_header,
+.account_book_row {
+  display: grid;
+  grid-template-columns:
+    70px
+    1.2fr
+    1fr
+    2fr
+    1fr
+    1.4fr;
+
+  align-items: center;
+  gap: 20px;
+}
+
+.account_books_table_header {
+  padding: 10px 60px;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding-top: 30px;
+}
+
+.account_book_row {
+  min-height: 115px;
+  padding: 15px 60px;
+  border-top: 1px solid #eeeeee;
+}
+
+.account_book_row:nth-child(odd) {
+  background-color: #edf2f5;
+}
+
+.account_book_image img {
+  display: block;
+  width: 78px;
+  height: 78px;
+  object-fit: cover;
+}
+
+.account_book_title,
+.account_book_author,
+.account_book_description {
+  font-size: 12px;
+}
+
+.account_book_description {
+  max-height: 45px;
+  overflow: hidden;
+  line-height: 1.4;
+}
+
+.account_status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 70px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  color: #ffffff;
+  font-size: 9px;
+}
+
+.account_status.available {
+  background-color: #76b8a1;
+}
+
+.account_status.unavailable {
+  background-color: #c56d6d;
+}
+
+.account_book_actions {
+  display: flex;
+  gap: 20px;
+}
+
+.account_book_actions a,
+.account_book_actions button {
+  font-size: 12px;
+  color: #555555;
+  text-decoration: underline;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 5px 0;
+}
+
+.account_book_actions .delete_book {
+  color: #c56d6d;
+}
+
+/*Aucun livre*/
+.account_empty_books {
+  padding: 40px;
+  color: #777777;
+  text-align: center;
+}
