@@ -39,10 +39,12 @@ class BookController
 
         if ($book === null) {
             http_response_code(404);
+
             View::getInstance()->render(
                 '404',
                 'Livre introuvable'
             );
+
             return;
         }
 
@@ -88,7 +90,7 @@ class BookController
                     true
                 )
             ) { 
-                $availability ='available';
+                $availability = 'available';
             }
 
             $userId = (int) $_SESSION['user_id'];
@@ -111,8 +113,35 @@ class BookController
 
             $imageService = new ImageService();
 
-            $picture = $imageService->upload();
+            //Charge l'image du livre
+            $upload = $imageService->upload();
 
+            //Vérifie si une erreur est survenue lors de l'upload
+            if ($upload['error'] !== null) {
+
+                View::getInstance()->render(
+                    'book-form',
+                    'Ajouter un livre',
+                    [
+                        'book' => array_merge(
+                            [
+                                'picture' => 'default-book.jpg'
+                            ],
+                            $_POST
+                        ),
+                        'formTitle' => 'Ajouter un livre',
+                        'formAction' => 'book-add',
+                        'error' => $upload['error']
+                    ]
+                );
+
+                return;
+            }
+
+            //Récupère le nom de l'image
+            $picture = $upload['file'];
+
+            //Crée le livre dans la base de données
             $bookRepository->create(
                 $userId,
                 $title,
@@ -178,7 +207,6 @@ class BookController
             return;
         }
 
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $title = strip_tags(
@@ -202,7 +230,7 @@ class BookController
                     true
                 )
             ) { 
-                $availability ='available';
+                $availability = 'available';
             }
 
             if ($title === '' || $author === '') {
@@ -224,18 +252,41 @@ class BookController
             $imageService = new ImageService();
 
             //Charge une nouvelle image
-            $picture = $imageService->upload();
+            $upload = $imageService->upload(
+                'picture',
+                false
+            );
+
+            //Vérifie si une erreur est survenue lors de l'upload
+            if ($upload['error'] !== null) {
+
+                View::getInstance()->render(
+                    'book-form',
+                    'Modifier les informations',
+                    [
+                        'book' => array_merge($book, $_POST),
+                        'formTitle' => 'Modifier les informations',
+                        'formAction' => 'book-edit&id=' . $id,
+                        'error' => $upload['error']
+                    ]
+                );
+
+                return;
+            }
 
             //Si une nouvelle image a été ajoutée
-            if ($picture !== null) {
+            if ($upload['file'] !== null) {
 
                 //Supprime l'ancienne image
                 $imageService->delete(
                     $book['picture']
                 );
+
+                $picture = $upload['file'];
+
             } else {
 
-                //Consevre l'ancienne image
+                //Conserve l'ancienne image
                 $picture = $book['picture'];
             }
 
@@ -255,7 +306,6 @@ class BookController
 
             exit;
         }
-
 
         View::getInstance()->render(
             'book-form',
@@ -300,7 +350,7 @@ class BookController
             return;
         }
 
-        //Verifie que l'utlisateur connecté est le propriétaire du livre
+        //Verifie que l'utilisateur connecté est le propriétaire du livre
         if ((int) $book['user_id'] !== $userId) {
             http_response_code(403);
 
@@ -312,11 +362,11 @@ class BookController
             return;
         }
 
-        //Supprime l'image  du livre
+        //Supprime l'image du livre
         if (!empty($book['picture'])) {
-                $imageService->delete(
-                    $book['picture']
-                );
+            $imageService->delete(
+                $book['picture']
+            );
         }
 
         //Supprime le livre de la base de données
