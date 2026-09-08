@@ -38,26 +38,6 @@ class UserRepository extends AbstractRepository
         return $this->hydrate($data);
     }
 
-    //Recherche un utilisateur grâce à son identifiant
-    public function findById(int $id): ?User
-    {
-        $query = $this->connection->prepare(
-            'SELECT * FROM ' . $this->getTableName() . ' WHERE id = :id'
-        );
-
-        $query->execute([
-            'id' => $id
-        ]);
-
-        $data = $query->fetch();
-
-        if ($data === false) {
-            return null;
-        }
-
-        return $this->hydrate($data);
-    }
-
     //Enregistre un nouvel utilisateur
     public function create(User $user): void
     {

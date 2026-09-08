@@ -69,16 +69,22 @@ class BookController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $title = strip_tags(
-                trim($_POST['title'] ?? '')
+            $title = htmlspecialchars(
+                trim($_POST['title'] ?? ''),
+                ENT_QUOTES,
+                'UTF-8'
             );
 
-            $author = strip_tags(
-                trim($_POST['author'] ?? '')
+            $author = htmlspecialchars(
+                trim($_POST['author'] ?? ''),
+                ENT_QUOTES,
+                'UTF-8'
             );
 
-            $description = strip_tags(
-                trim($_POST['description'] ?? '')
+            $description = htmlspecialchars(
+                trim($_POST['description'] ?? ''),
+                ENT_QUOTES,
+                'UTF-8'
             );
             
             $availability = $_POST['availability'] ?? 'available';
@@ -209,16 +215,22 @@ class BookController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $title = strip_tags(
-                trim($_POST['title'] ?? '')
+            $title = htmlspecialchars(
+                trim($_POST['title'] ?? ''),
+                ENT_QUOTES,
+                'UTF-8'
             );
 
-            $author = strip_tags(
-                trim($_POST['author'] ?? '')
+            $author = htmlspecialchars(
+                trim($_POST['author'] ?? ''),
+                ENT_QUOTES,
+                'UTF-8'
             );
 
-            $description = strip_tags(
-                trim($_POST['description'] ?? '')
+            $description = htmlspecialchars(
+                trim($_POST['description'] ?? ''),
+                ENT_QUOTES,
+                'UTF-8'
             );
             
             $availability = $_POST['availability'] ?? 'available';
