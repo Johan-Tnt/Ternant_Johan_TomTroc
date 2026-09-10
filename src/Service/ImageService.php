@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-class ImageService 
+abstract class ImageService extends Singleton
 {
     private const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
@@ -12,13 +12,16 @@ class ImageService
             'image/webp' => 'webp'
         ];
 
-    private const UPLOAD_DIRECTORY =
-        __DIR__ . '/../../public/assets/images/pictures-books/';
+    //Retourne le dossier dans lequel enregistrer les images
+    abstract protected function getUploadDirectory(): string;
 
-    //Définit l'image par defaut d'un livre
-    private const DEFAULT_IMAGE = 'default-book.jpg';
+    //Retourne le nom de l'image par défaut 
+    abstract protected function getDefaultImage(): string;
 
-    //Enregistre une image dans le dossier des livres
+    //Retourne le préfixe utilisé pour nommer les images
+    abstract protected function getFilePrefix(): string;
+
+    //Enregistre une image dans le dossier
     public function upload(
             string $inputName = 'picture',
             bool $useDefault = true
@@ -30,7 +33,7 @@ class ImageService
         ) {
             if ($useDefault) {
                 return [
-                    'file' => self::DEFAULT_IMAGE,
+                    'file' => $this->getDefaultImage(),
                     'error' => null
                 ];
             }
@@ -46,26 +49,7 @@ class ImageService
         //Vérifie les erreurs d'upload
         if ($file['error'] !== UPLOAD_ERR_OK) {
 
-            $error = match ($file['error']) {
-                UPLOAD_ERR_INI_SIZE,
-                UPLOAD_ERR_FORM_SIZE =>
-                    'L’image est trop volumineuse.',
-
-                UPLOAD_ERR_PARTIAL =>
-                    'L’image n’a pas été envoyée entièrement.',
-
-                UPLOAD_ERR_NO_TMP_DIR =>
-                    'Le dossier temporaire est introuvable.',
-
-                UPLOAD_ERR_CANT_WRITE =>
-                    'Impossible d’enregistrer l’image.',
-
-                UPLOAD_ERR_EXTENSION =>
-                    'L’envoi de l’image a été interrompu.',
-
-                default =>
-                    'Une erreur inconnue est survenue lors de l’envoi de l’image.'
-            };
+            $error = 'Une erreur inconnue est survenue lors de l’envoi de l’image.';
 
             return [
                 'file' => null,
@@ -93,20 +77,20 @@ class ImageService
         }
 
         //Crée le dossier si nécessaire
-        if (!is_dir(self::UPLOAD_DIRECTORY)) {
-            mkdir(self::UPLOAD_DIRECTORY, 0777, true);
+        if (!is_dir($this->getUploadDirectory())) {
+            mkdir($this->getUploadDirectory(), 0777, true);
         }
 
         $extension = self::ALLOWED_TYPES[$fileType];
 
-        $fileName = uniqid('book_', true) . '.' . $extension;
+        $fileName = uniqid($this->getFilePrefix(), true) . '.' . $extension;
 
-        $uploadPath = self::UPLOAD_DIRECTORY . $fileName;
+        $uploadPath = $this->getUploadDirectory() . $fileName;
 
         if (!move_uploaded_file($file['tmp_name'], $uploadPath)) {
             return [
                 'file' => null,
-                'error' => 'Impossible d’enregistrer l’image.'
+                'error' => null
             ];
         }
 
@@ -121,12 +105,12 @@ class ImageService
     {
         if (
             empty($fileName)
-            || $fileName === self::DEFAULT_IMAGE
+            || $fileName === $this->getDefaultImage()
         ) {
             return;
         }
 
-        $filePath = self::UPLOAD_DIRECTORY . $fileName;
+        $filePath = $this->getUploadDirectory() . $fileName;
 
         if (
             file_exists($filePath)

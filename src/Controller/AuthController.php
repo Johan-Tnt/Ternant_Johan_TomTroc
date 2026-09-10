@@ -6,6 +6,7 @@ use App\Service\View;
 use App\Repository\UserRepository;
 use App\Entity\User;
 use App\Repository\BookRepository;
+use App\Service\UserPictureService;
 
 class AuthController
 {
@@ -221,89 +222,47 @@ class AuthController
         $books = $bookRepository->findByUserId($userId);
 
         //Gestion du nouvel avatar
-        if (
-            isset($_FILES['avatar'])
-            && $_FILES['avatar']['error'] === UPLOAD_ERR_OK
-        ) {
-            $allowedTypes = [
-                'image/jpeg',
-                'image/png',
-                'image/webp'
-            ];
+        if (isset($_FILES['avatar'])) {
+            $imageService = UserPictureService::getInstance();
 
-            $fileType = mime_content_type(
-                $_FILES['avatar']['tmp_name']
-             );
+            $upload = $imageService->upload(
+                'avatar',
+                false
+            );
 
-            if (!in_array($fileType, $allowedTypes, true)) {
+            //Vérifie si une erreur est survenue lors de l'upload
+            if ($upload['error'] !== null) {
                 View::getInstance()->render(
                     'account',
-                    'Mon compte',
+                    'Mon Compte',
                     [
                         'user' => $user,
                         'books' => $books,
                         'bookCount' => count($books),
-                        'error' => 'Le format de l’image n’est pas valide.'
+                        'error' => $upload['error']
                     ]
                 );
 
                 return;
             }
 
-            $extension = match ($fileType) {
-                'image/jpeg' => 'jpg',
-                'image/png' => 'png',
-                'image/webp' => 'webp'
-            };
+            //Si un nouvel avatar a été ajouté
+            if ($upload['file'] !== null) {
 
-            $avatarName = uniqid('avatar_', true) . '.' . $extension;
-
-            $avatarPath = __DIR__
-                . '/../../public/assets/images/avatars/'
-                . $avatarName;
-
-            if (
-                !move_uploaded_file(
-                    $_FILES['avatar']['tmp_name'],
-                    $avatarPath
-                )
-            ) {
-                View::getInstance()->render(
-                    'account',
-                    'Mon compte',
-                    [
-                        'user' => $user,
-                        'books' => $books,
-                        'bookCount' => count($books),
-                        'error' => 'Impossible d’enregistrer l’image.'
-                    ]
+                //Supprime l'ancien avatar
+                $imageService->delete(
+                    $user->getAvatar()
                 );
 
-                return;
+                $user->setAvatar(
+                    $upload['file']
+                );
+
+                $userRepository->update($user);
+
+                header('Location: index.php?route=account');
+                exit;
             }
-
-            //Supprime l'ancien avatar
-            if (!empty($user->getAvatar()) 
-                && $user->getAvatar() !== 'default-avatar.jpg'
-            ) {
-                $oldAvatarPath = __DIR__
-                    . '/../../public/assets/images/avatars/'
-                    . $user->getAvatar();
-
-                if (
-                    file_exists($oldAvatarPath)
-                    && is_file($oldAvatarPath)
-                ) {
-                    unlink($oldAvatarPath);
-                }
-            }
-
-            $user->setAvatar($avatarName);
-
-            $userRepository->update($user);
-
-            header('Location: index.php?route=account');
-            exit;
         }
 
         //Modification des informations personnelles

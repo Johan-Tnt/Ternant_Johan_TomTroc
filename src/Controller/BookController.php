@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Service\View;
 use App\Repository\BookRepository;
-use App\Service\ImageService;
+use App\Service\BookPictureService;
 
 class BookController
 {
@@ -117,7 +117,7 @@ class BookController
                 return;
             }
 
-            $imageService = new ImageService();
+            $imageService = BookPictureService::getInstance();
 
             //Charge l'image du livre
             $upload = $imageService->upload();
@@ -261,7 +261,7 @@ class BookController
                 return;
             }
 
-            $imageService = new ImageService();
+            $imageService = BookPictureService::getInstance();
 
             //Charge une nouvelle image
             $upload = $imageService->upload(
@@ -344,7 +344,7 @@ class BookController
         }
 
         $bookRepository = new BookRepository();
-        $imageService = new ImageService();
+        $imageService = BookPictureService::getInstance();
 
         $userId = (int) $_SESSION['user_id'];
         $id = (int) ($_POST['id'] ?? 0);
