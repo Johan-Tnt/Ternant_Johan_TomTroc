@@ -55,6 +55,10 @@ class Router extends Singleton
                (new AuthController())->account();
                 break;
 
+            case 'account-profile':
+               (new AuthController())->profile();
+                break;
+
             case 'account-update':
                 (new AuthController())->update();
                 break;

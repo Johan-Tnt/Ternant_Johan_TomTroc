@@ -1,11 +1,11 @@
-/*Contient le style global de la page Mon compte*/
-/*Page mon compte*/
+/*Contient le style global de la page Mon compte et Compte public*/
+/*Page Mon compte*/
 .account_section {
   padding: 45px 0 70px;
 }
 
 .account_container {
-  max-width: 1050px;
+  max-width: 1200px;
 }
 
 .account_section h1 {
@@ -158,12 +158,11 @@
   display: grid;
   grid-template-columns:
     70px
-    1.2fr
+    1.5fr
     1fr
     2fr
     1fr
     1.4fr;
-
   align-items: center;
   gap: 20px;
 }
@@ -249,4 +248,30 @@
   padding: 40px;
   color: #777777;
   text-align: center;
+}
+
+/*Page mon compte public*/
+.account_profile_content {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+/*Bouton écrire un message*/
+.account_profile_message {
+  margin-top: 25px;
+  width: 215px;
+  padding: 20px;
+  background-color: #efefef;
+}
+
+/*Colonnes des livres du compte public*/
+.account_profile_books_table .account_books_table_header,
+.account_profile_books_table .account_book_row {
+  grid-template-columns:
+    70px
+    1.5fr
+    1fr
+    2fr;
 }

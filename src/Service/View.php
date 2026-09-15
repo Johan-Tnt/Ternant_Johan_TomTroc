@@ -31,6 +31,9 @@ class View extends Singleton
         } elseif ($viewName === '403' || $viewName === '404') {
             $pageStyle = 'error.css';
 
+        } elseif ($viewName === 'account' || $viewName === 'account_profile') {
+            $pageStyle = 'account.css';
+
         } else {
             $pageStyle = $viewName . '.css';
         }

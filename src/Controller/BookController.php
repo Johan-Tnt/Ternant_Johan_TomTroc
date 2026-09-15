@@ -42,7 +42,13 @@ class BookController
 
             View::getInstance()->render(
                 '404',
-                'Livre introuvable'
+                'Livre introuvable',
+                [
+                    'errorTitle' => 'Livre introuvable',
+                    'errorMessage' => "Le livre que vous recherchez n'existe pas ou n'est plus disponible.",
+                    'errorLink' => 'index.php?route=books',
+                    'errorLinkText' => 'Retour aux livres'
+                ]
             );
 
             return;
@@ -193,7 +199,13 @@ class BookController
 
             View::getInstance()->render(
                 '404',
-                'Livre introuvable'
+                'Livre introuvable',
+                [
+                    'errorTitle' => 'Livre introuvable',
+                    'errorMessage' => "Le livre que vous recherchez n'existe pas ou n'est plus disponible.",
+                    'errorLink' => 'index.php?route=books',
+                    'errorLinkText' => 'Retour aux livres'
+                ]
             );
 
             return;
@@ -356,7 +368,13 @@ class BookController
 
             View::getInstance()->render(
                 '404',
-                'Livre introuvable'
+                'Livre introuvable',
+                [
+                    'errorTitle' => 'Livre introuvable',
+                    'errorMessage' => "Le livre que vous recherchez n'existe pas ou n'est plus disponible.",
+                    'errorLink' => 'index.php?route=books',
+                    'errorLinkText' => 'Retour aux livres'
+                ]
             );
 
             return;

@@ -7,7 +7,7 @@
 /*En-tête du formulaire*/
 .book_form_header {
   width: 100%;
-  max-width: 1050px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -36,7 +36,7 @@
   display: flex;
   align-items: flex-start;
   /*width: 100%;*/
-  max-width: 1050px;
+  max-width: 1200px;
   min-height: 470px;
   margin: 0 auto;
   padding: 40px 55px;

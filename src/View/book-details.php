@@ -41,7 +41,10 @@
 
             <h2 class="book_label">PROPRIETAIRE</h2>
 
-            <div class="owner_card">
+            <a 
+                href="index.php?route=account-profile&id=<?= (int) $book['user_id'] ?>"
+                class="owner_card"
+            >
 
                 <img
                     src="assets/images/avatars/<?= htmlspecialchars($book['avatar']) ?>"
@@ -53,7 +56,7 @@
                     <?= htmlspecialchars($book['pseudo']) ?>
                 </p>
 
-            </div>
+            </a>
             
             <?php if (
                 !isset($_SESSION['user_id'])

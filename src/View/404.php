@@ -4,17 +4,17 @@
 
         <h1>404</h1>
 
-        <h2>Livre introuvable</h2>
+        <h2><?= htmlspecialchars($errorTitle) ?></h2>
 
         <p>
-            Le livre que vous recherchez n'existe pas ou n'est plus disponible.
+            <?= htmlspecialchars($errorMessage) ?>
         </p>
 
         <a
-            href="index.php?route=books"
+            href="<?= htmlspecialchars($errorLink) ?>"
             class="button button--primary"
         >
-            Retour aux livres
+            <?= htmlspecialchars($errorLinkText) ?>
         </a>
 
     </div>

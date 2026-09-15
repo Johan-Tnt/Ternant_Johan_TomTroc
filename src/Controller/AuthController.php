@@ -191,6 +191,46 @@ class AuthController
         );
     }
 
+    //Affiche le profil public d'un utilisateur 
+    public function profile(): void
+    {
+        $userRepository = new UserRepository();
+        $bookRepository = new BookRepository();
+
+        $id = (int) ($_GET['id'] ?? 0);
+
+        $user = $userRepository->findById($id);
+
+        if ($user === null) {
+            http_response_code(404);
+
+            View::getInstance()->render(
+                '404',
+                'Utilisateur introuvable',
+                [
+                    'errorTitle' => 'Utilisateur introuvable',
+                    'errorMessage' => "L'utilisateur que vous recherchez n'existe pas ou n'est plus disponible.",
+                    'errorLink' => 'index.php?route=',
+                    'errorLinkText' => "Retour à l'accueil"
+                ]
+            );
+
+            return;
+        }
+
+        $books = $bookRepository->findByUserId($id);
+
+        View::getInstance()->render(
+            'account_profile',
+            'Compte public',
+            [
+                'user' => $user,
+                'books' => $books,
+                'bookCount' => count($books)
+            ]
+        );
+    }
+
     //Met à jour les informations du compte
     public function update(): void
     {
@@ -234,7 +274,7 @@ class AuthController
             if ($upload['error'] !== null) {
                 View::getInstance()->render(
                     'account',
-                    'Mon Compte',
+                    'Mon compte',
                     [
                         'user' => $user,
                         'books' => $books,

@@ -91,6 +91,14 @@
   font-size: 14px;
 }
 
+.owner_card:hover .owner_name {
+  color: #00ac66;
+}
+
+.owner_card:hover .owner_avatar {
+  filter: sepia(1) saturate(5) hue-rotate(100deg);
+}
+
 .book_button {
   width: 100%;
   height: 63px;
