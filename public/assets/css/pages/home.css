@@ -1,6 +1,6 @@
 /*Contient la page d'accueil du site TomTroc*/
 .home {
-  padding: 5rem 0;
+  padding: 3rem 0;
 }
 
 .home_container {
@@ -39,6 +39,11 @@
   margin-top: 10px;
   text-align: right;
   font-size: 12px;
+}
+
+/*Les boutons de la page home*/
+.button_home {
+  margin-top: 35px;
 }
 
 /*Les derniers livres ajoutés*/

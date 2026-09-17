@@ -40,10 +40,16 @@
   border: 1px solid #00ac66;
 }
 
-/*Les boutons de la page home*/
-.button_home {
-  /*display: inline-block;*/
-  margin-top: 35px;
+/*Ajout les effets aux survols des boutons*/
+.button--primary:hover,
+.button--secondary:hover {
+  background-color: #006d41;
+}
+
+.button--outline:hover,
+.button--outline--account:hover {
+  background-color: #006d41;
+  color: white;
 }
 
 /*Badge d'indispo. sur les cartes de livres de la page Nos livres*/
@@ -61,9 +67,4 @@
   border-radius: 20px;
   align-items: center;
   justify-content: center;
-}
-
-/*Bouton du formulaire édtion et d'ajout d'un livre*/
-.button_validator {
-  width: 100%;
 }

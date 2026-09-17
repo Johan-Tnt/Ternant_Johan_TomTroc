@@ -1,4 +1,4 @@
-<!-- OUR BOOKS FOR EXCHANGE AND WANTED -->
+<!-- NOS LIVRES À ÉCHANGER ET RECHERCHÉS-->
 <section class="books_and_search">
     <div class="container books_header">
 
@@ -44,7 +44,7 @@
 
 </section>
 
-<!-- LIST OF BOOKS -->
+<!-- LISTE DE LIVRES -->
 <section class="books_list">
 
     <div class="container home_container books_container">

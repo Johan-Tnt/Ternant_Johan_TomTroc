@@ -1,4 +1,4 @@
-<!-- BREADCRUMB -->
+<!-- CHAPELURE -->
 <div class="container breadcrumb">
     <a href="index.php?route=books">
         Nos livres
@@ -11,6 +11,7 @@
     </span>
 </div>
 
+<!-- DETAILS D'UN LIVRE -->
 <section class="book_details">
 
     <div class="container book_details_container">

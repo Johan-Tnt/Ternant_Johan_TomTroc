@@ -119,11 +119,18 @@
 
                         </div>
 
+                        <?php  
+                        $description = $book->getDescription() ?? '';
+
+                        if (mb_strlen($description)> 150) {
+                            $description = mb_substr($description, 0, 180);
+                            $description = mb_substr($description, 0, mb_strrpos($description, ' ')) . '...';
+                        }
+                        ?>
+
                         <div class="account_book_description">
 
-                            <?=  htmlspecialchars(
-                                $book->getDescription()
-                            ) ?>
+                            <?=  htmlspecialchars($description) ?>
 
                         </div>
 

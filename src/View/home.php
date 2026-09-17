@@ -1,4 +1,4 @@
-<!-- PASSIONATE READERS -->
+<!-- LECTEURS PASSIONNÉS -->
 <section class="home">
     <div class="container home_container">
     
@@ -65,7 +65,14 @@
         </a>
 
         <?php endforeach; ?>
-    </div>
+
+        </div>
+    
+        <div class="books_look">
+            <a href="/books" class="button button--primary button_home">
+                Voir tous les livres
+            </a>
+        </div>
 </section>
 
 <!-- COMMENT ÇA MARCHE -->

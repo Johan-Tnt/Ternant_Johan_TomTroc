@@ -199,7 +199,6 @@
 }
 
 .account_book_description {
-  max-height: 45px;
   overflow: hidden;
   line-height: 1.4;
 }
