@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Controller\HomeController;
 use App\Controller\BookController;
 use App\Controller\AuthController;
+use App\Controller\MessageController;
 use Exception;
 
 class Router extends Singleton
@@ -62,8 +63,19 @@ class Router extends Singleton
             case 'account-update':
                 (new AuthController())->update();
                 break;
- 
 
+            case 'messaging':
+                (new MessageController())->index();
+                break;
+
+            case 'message-start':
+                (new MessageController())->startConversation();
+                break;
+
+            case 'message-refresh':
+                (new MessageController())->refresh();
+                break;
+ 
             default:
                 throw new Exception('Page not found.');
         }

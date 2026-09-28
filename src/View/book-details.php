@@ -64,7 +64,10 @@
                 || (int) $_SESSION['user_id'] !== (int) $book['user_id']
             ) : ?>
 
-                <a href="#" class="button button--primary book_button">
+                <a
+                    href="index.php?route=message-start&user_id=<?= (int) $book['user_id'] ?>"
+                    class="button button--primary book_button"
+                >
                     Envoyer un message
                 </a>
 

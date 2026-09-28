@@ -61,3 +61,19 @@ nav a:hover {
 nav a.active {
   font-weight: 600; /*SemiBold*/
 }
+
+/*Permet de voir le nombre de message(s) non lus lorsqu'un utilisateur est connecté, ex : 2*/
+.messaging_unread_count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 17px;
+  width: 10px;
+  border-radius: 33%;
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 9px;
+  position: relative;
+  right: 3px;
+  bottom: 2px;
+}

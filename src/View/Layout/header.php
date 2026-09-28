@@ -1,5 +1,18 @@
 <?php
+
+use App\Repository\MessageRepository;
+
 $route = $_GET['route'] ?? '';
+
+$unreadMessageCount = 0;
+
+if (isset($_SESSION['user_id'])) {
+    $messageRepository = new MessageRepository();
+
+    $unreadMessageCount = $messageRepository->countUnreadMessages(
+        (int) $_SESSION['user_id']
+    );
+}
 ?>
 
 <header>
@@ -34,6 +47,20 @@ $route = $_GET['route'] ?? '';
             <ul>
 
                 <?php if (isset($_SESSION['user_id'])): ?>
+
+                    <li>
+                        <a href="index.php?route=messaging"
+                             class="<?= $route === 'messaging' ? 'active' : '' ?>"
+                        >
+                            Messagerie
+                            
+                            <?php if ($unreadMessageCount > 0) : ?>
+                                <span class="messaging_unread_count">
+                                    <?= $unreadMessageCount ?>
+                                </span>
+                            <?php endif; ?>
+                        </a>
+                    </li>
 
                     <li>
                         <a href="index.php?route=account"

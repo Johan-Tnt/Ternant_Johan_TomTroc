@@ -54,12 +54,12 @@
                 </span>
 
             </div>
-
-            <a
-                href="#"
+               
+            <a 
+                href="index.php?route=message-start&user_id=<?= (int)  $user->getId() ?>"
                 class="button button--outline--account account_button account_profile_message"
             >
-                Écrire un message
+               Écrire un message 
             </a>
 
         </aside>

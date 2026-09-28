@@ -13,6 +13,9 @@ class Message
 
     //Date générée par la base de données
     private string $createdAt = '';
+
+    //Avatar par défaut générée par la base de données
+    private string $senderAvatar = 'default-avatar.jpg';
     
     //Construit un nouveau message
     public function __construct(
@@ -85,6 +88,17 @@ class Message
     {
         $this->createdAt = $createdAt;
 
+        return $this;
+    }
+
+    public function getSenderAvatar(): string
+    {
+        return $this->senderAvatar;
+    }
+
+    public function setSenderAvatar(string $senderAvatar): self
+    {
+        $this->senderAvatar = $senderAvatar;
         return $this;
     }
 }
