@@ -30,7 +30,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  refreshMessages();
-
-  setInterval(refreshMessages, 10000);
+  setInterval(refreshMessages, 3000);
 });

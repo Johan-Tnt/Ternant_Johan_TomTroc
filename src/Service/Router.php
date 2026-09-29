@@ -6,6 +6,7 @@ use App\Controller\HomeController;
 use App\Controller\BookController;
 use App\Controller\AuthController;
 use App\Controller\MessageController;
+use App\Controller\AccountController;
 use Exception;
 
 class Router extends Singleton
@@ -53,15 +54,15 @@ class Router extends Singleton
                 break;
 
             case 'account':
-               (new AuthController())->account();
+               (new AccountController())->account();
                 break;
 
             case 'account-profile':
-               (new AuthController())->profile();
+               (new AccountController())->profile();
                 break;
 
             case 'account-update':
-                (new AuthController())->update();
+                (new AccountController())->update();
                 break;
 
             case 'messaging':
