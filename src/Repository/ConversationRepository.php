@@ -110,44 +110,49 @@ class ConversationRepository extends AbstractRepository
                 c.user_one_id,
                 c.user_two_id,
                 CASE
-                    WHEN c.user_one_id = :user_id_one THEN u2.id
-                    ELSE u1.id
+                    WHEN c.user_one_id = :user_id_case THEN user_two.id
+                    ELSE user_one.id
                 END AS other_user_id,
-                CASE 
-                    WHEN c.user_one_id = :user_id_two THEN u2.pseudo
-                    ELSE u1.pseudo 
+                CASE
+                    WHEN c.user_one_id = :user_id_case THEN user_two.pseudo
+                    ELSE user_one.pseudo
                 END AS other_user_pseudo,
-                CASE 
-                    WHEN c.user_one_id = :user_id_three THEN u2.avatar
-                    ELSE u1.avatar
+                CASE
+                    WHEN c.user_one_id = :user_id_case THEN user_two.avatar
+                    ELSE user_one.avatar
                 END AS other_user_avatar,
-                m.content AS last_message_content,
-                m.created_at AS last_message_created_at
+                last_message.content AS last_message_content,
+                last_message.created_at AS last_message_created_at
             FROM conversations c
-            INNER JOIN users u1 ON u1.id = c.user_one_id
-            INNER JOIN users u2 ON u2.id = c.user_two_id
-            LEFT JOIN messages m ON m.id = (
-                SELECT m2.id
-                FROM messages m2 
-                WHERE m2.conversation_id = c.id
-                ORDER BY m2.created_at DESC, m2.id DESC
-                LIMIT 1
+            INNER JOIN users user_one
+                ON user_one.id = c.user_one_id
+            INNER JOIN users user_two
+                ON user_two.id = c.user_two_id
+            LEFT JOIN messages last_message
+                ON last_message.id = (
+                    SELECT message.id
+                    FROM messages message
+                    WHERE message.conversation_id = c.id
+                    ORDER BY message.created_at DESC, message.id DESC
+                    LIMIT 1
+                )
+            WHERE :user_id_filter IN (
+                c.user_one_id,
+                c.user_two_id
             )
-            WHERE c.user_one_id = :user_id_four
-            OR c.user_two_id = :user_id_five
-            ORDER BY COALESCE(m.created_at, c.created_at) DESC'
+            ORDER BY COALESCE(
+                last_message.created_at,
+                c.created_at
+            ) DESC'
         );
 
         $query->execute([
-            'user_id_one' => $userId,
-            'user_id_two' => $userId,
-            'user_id_three' => $userId,
-            'user_id_four' => $userId,
-            'user_id_five' => $userId
+            'user_id_case' => $userId,
+            'user_id_filter' => $userId
         ]);
 
         return $query->fetchAll();
-    }
+}
 
     //Récupère une conversation appartenant à un utilisateur
     public function findByIdForUser(

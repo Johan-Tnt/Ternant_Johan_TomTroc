@@ -25,9 +25,10 @@ class MessageRepository  extends AbstractRepository
                 m.*,
                 u.avatar AS sender_avatar
             FROM messages m
-            INNER JOIN users u ON u.id = m.sender_id
-            WHERE conversation_id = :conversation_id
-            ORDER BY created_at ASC'
+            INNER JOIN users u 
+                ON u.id = m.sender_id
+            WHERE m.conversation_id = :conversation_id
+            ORDER BY m.created_at ASC'
         );
 
         $query->execute([
