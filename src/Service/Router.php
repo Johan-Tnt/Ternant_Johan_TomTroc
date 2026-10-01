@@ -76,6 +76,10 @@ class Router extends Singleton
             case 'message-refresh':
                 (new MessageController())->refresh();
                 break;
+
+            case 'message-count':
+                (new MessageController())->countUnread();
+                break;
  
             default:
                 throw new Exception('Page not found.');

@@ -18,6 +18,9 @@ class MessageController
 
         $userId = (int) $_SESSION['user_id'];
 
+        //Libère le verrou de session après avoir récupéré l'identifiant
+        session_write_close();
+
         $conversationRepository = new ConversationRepository();
         $messageRepository = new MessageRepository();
 
@@ -87,6 +90,10 @@ class MessageController
         }
 
         $userId = (int) $_SESSION['user_id'];
+
+        //Libère le verrou de session après avoir récupéré l'identifiant
+        session_write_close();
+
         $conversationId = (int) ($_GET['id'] ?? 0);
 
         if ($conversationId <=0) {
@@ -113,6 +120,32 @@ class MessageController
         );
 
         require __DIR__ .'/../View/Partials/messages.php';
+    }
+
+    //Récupère le nombre de messages non lus 
+    public function countUnread(): void
+    {
+        if (!isset($_SESSION['user_id'])) {
+            http_response_code(401);
+            return;
+        }
+
+        $userId = (int) $_SESSION['user_id'];
+
+        //Libère le verrou de session après avoir récupéré l'identifiant
+        session_write_close();
+
+        $messageRepository = new MessageRepository();
+
+        $unreadMessageCount = $messageRepository->countUnreadMessages(
+            $userId
+        );
+
+        header('Content-Type: application/json');
+
+        echo json_encode([
+            'count' => $unreadMessageCount
+        ]);
     }
 
     //Ouvre une conversation avec un utilisateur 

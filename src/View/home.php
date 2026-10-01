@@ -11,7 +11,7 @@
                 partage de connaissances et d'histoires à travers les livres. 
             </p>
 
-            <a href="/books" class="button button--primary button_home">
+            <a href="index.php?route=books" class="button button--primary button_home">
                 Découvrir
             </a>
         </div>
@@ -69,7 +69,7 @@
         </div>
     
         <div class="books_look">
-            <a href="/books" class="button button--primary button_home">
+            <a href="index.php?route=books" class="button button--primary button_home">
                 Voir tous les livres
             </a>
         </div>
@@ -97,7 +97,7 @@
             </ol>
 
             <div class="books_look">
-                <a href="/books" class="button button--outline button_home">
+                <a href="index.php?route=books" class="button button--outline button_home">
                     Voir tous les livres
                 </a>
             </div>

@@ -30,5 +30,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  setInterval(refreshMessages, 3000);
+  const scheduleRefresh = async () => {
+    await refreshMessages();
+
+    setTimeout(scheduleRefresh, 3000);
+  };
+
+  scheduleRefresh();
 });
