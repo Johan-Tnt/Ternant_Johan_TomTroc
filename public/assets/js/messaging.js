@@ -14,8 +14,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const refreshMessages = async () => {
     try {
+      const messageElements =
+        messagesContainer.querySelectorAll("[data-message-id]");
+
+      const lastMessageElement = messageElements[messageElements.length - 1];
+
+      const lastMessageId = lastMessageElement
+        ? lastMessageElement.dataset.messageId
+        : 0;
+
       const response = await fetch(
-        `index.php?route=message-refresh&id=${conversationId}`,
+        `index.php?route=message-refresh&id=${conversationId}&last_message_id=${lastMessageId}`,
       );
 
       if (!response.ok) {
@@ -24,7 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const html = await response.text();
 
-      messagesContainer.innerHTML = html;
+      if (html.trim() !== "") {
+        messagesContainer.insertAdjacentHTML("beforeend", html);
+      }
     } catch (error) {
       return;
     }

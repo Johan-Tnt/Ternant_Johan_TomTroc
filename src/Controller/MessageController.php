@@ -59,14 +59,19 @@ class MessageController
                 }
 
                 $messages = $messageRepository->findByConversationId(
-                    $conversationId
+                    $conversationId,
                 );
 
                 //Marque comme lus les messages reçus dans une conversation
-                $messageRepository->markMessagesAsRead(
-                    $conversationId,
-                    $userId
-                );
+                if (!empty($messages)) {
+                    $lastMessageId = end($messages)->getId();
+
+                    $messageRepository->markMessagesAsRead(
+                        $conversationId,
+                        $userId,
+                        $lastMessageId
+                    );
+                }
             }
         }
 
@@ -113,11 +118,26 @@ class MessageController
             return;
         }
 
+        $lastMessageId = (int) ($_GET['last_message_id'] ?? 0);
+
         $messageRepository = new MessageRepository();
 
         $messages = $messageRepository->findByConversationId(
-            $conversationId
+            $conversationId,
+            $lastMessageId
         );
+
+        if (!empty($messages)) {
+            $newLastMessageId = end($messages)->getId();
+            
+            $messageRepository->markMessagesAsRead(
+                $conversationId,
+                $userId,
+                $newLastMessageId
+            );
+        }
+
+        $showEmptyMessage = false;
 
         require __DIR__ .'/../View/Partials/messages.php';
     }

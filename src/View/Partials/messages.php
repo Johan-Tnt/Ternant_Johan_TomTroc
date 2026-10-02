@@ -1,8 +1,13 @@
 <?php if (empty($messages)) : ?>
 
-    <p class="messaging_empty">
-        Aucun message dans cette conversation.
-    </p>
+    <?php if (($showEmptyMessage ?? true)) : ?>
+
+        <p class="messaging_empty">
+            Aucun message dans cette conversation.
+        </p>
+
+    
+    <?php endif; ?>
 
 <?php else : ?>
 
@@ -13,7 +18,10 @@
         $isSent = $message->getSenderId() === (int) $_SESSION['user_id'];
         ?>
 
-        <div class="messaging_message_wrapper <?= $isSent ? 'messaging_message_wrapper--sent' : 'messaging_message_wrapper--received' ?>">
+        <div 
+            class="messaging_message_wrapper <?= $isSent ? 'messaging_message_wrapper--sent' : 'messaging_message_wrapper--received' ?>"
+            data-message-id="<?= $message->getId() ?>"
+        >
 
             <?php if (!$isSent) : ?>
 

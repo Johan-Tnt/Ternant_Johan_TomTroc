@@ -17,23 +17,43 @@ class MessageRepository  extends AbstractRepository
         return Message::class;
     }
 
-    //Récupère tous les messages d'une conversation
-    public function findByConversationId(int $conversationId): array
-    {
-        $query = $this->connection->prepare(
-            'SELECT 
+    //Récupère les messages d'une conversation
+    public function findByConversationId(
+        int $conversationId,
+        ?int $lastMessageId = null
+    ): array {
+        $sql = '
+            SELECT
                 m.*,
                 u.avatar AS sender_avatar
             FROM messages m
-            INNER JOIN users u 
+            INNER JOIN users u
                 ON u.id = m.sender_id
             WHERE m.conversation_id = :conversation_id
-            ORDER BY m.created_at ASC'
-        );
+        ';
 
-        $query->execute([
+        //Récupère uniquement les nouveaux messages si un dernier identifiant est fourni
+        if ($lastMessageId !== null) {
+            $sql .= '
+                AND m.id > :last_message_id
+            ';
+        }
+
+        $sql .= '
+            ORDER BY m.created_at ASC
+        ';
+
+        $query = $this->connection->prepare($sql);
+
+        $params = [
             'conversation_id' => $conversationId
-        ]);
+        ];
+
+        if ($lastMessageId !== null) {
+            $params['last_message_id'] = $lastMessageId;
+        }
+
+        $query->execute($params);
 
         $messages = [];
 
@@ -101,18 +121,21 @@ class MessageRepository  extends AbstractRepository
     //Marque comme lus les messages reçus dans une conversation 
     public function markMessagesAsRead(
         int $conversationId,
-        int $userId
+        int $userId,
+        int $lastMessageId
     ): void {
         $query = $this->connection->prepare(
             'UPDATE messages
             SET is_read = 1 
             WHERE conversation_id = :conversation_id
+            AND id <= :last_message_id
             AND sender_id != :user_id
             AND is_read = 0'
         );
 
         $query->execute([
             'conversation_id' => $conversationId,
+            'last_message_id' => $lastMessageId,
             'user_id' => $userId
         ]);
     }
