@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const messagesContainer = document.querySelector("#messaging-messages");
+  const messagesContainer = document.getElementById("messaging-messages");
 
   if (!messagesContainer) {
     return;

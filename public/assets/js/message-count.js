@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const unreadMessageCount = document.querySelector("#messaging-unread-count");
+  const unreadMessageCount = document.getElementById("messaging-unread-count");
 
   if (!unreadMessageCount) {
     return;
