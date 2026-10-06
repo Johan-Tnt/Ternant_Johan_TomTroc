@@ -18,9 +18,6 @@ class MessageController
 
         $userId = (int) $_SESSION['user_id'];
 
-        //Libère le verrou de session après avoir récupéré l'identifiant
-        session_write_close();
-
         $conversationRepository = new ConversationRepository();
         $messageRepository = new MessageRepository();
 
@@ -96,9 +93,6 @@ class MessageController
 
         $userId = (int) $_SESSION['user_id'];
 
-        //Libère le verrou de session après avoir récupéré l'identifiant
-        session_write_close();
-
         $conversationId = (int) ($_GET['id'] ?? 0);
 
         if ($conversationId <=0) {
@@ -151,9 +145,6 @@ class MessageController
         }
 
         $userId = (int) $_SESSION['user_id'];
-
-        //Libère le verrou de session après avoir récupéré l'identifiant
-        session_write_close();
 
         $messageRepository = new MessageRepository();
 
