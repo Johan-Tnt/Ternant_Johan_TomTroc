@@ -57,6 +57,14 @@ nav a:hover {
   color: #00ac66;
 }
 
+.header_icon {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+  position: relative;
+  top: 2px;
+}
+
 /*Permet de savoir sur quelle page on ce trouve*/
 nav a.active {
   font-weight: 600; /*SemiBold*/

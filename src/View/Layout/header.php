@@ -41,8 +41,13 @@ $route = $_GET['route'] ?? '';
                         <a href="index.php?route=messaging"
                             class="<?= $route === 'messaging' ? 'active' : '' ?>"
                         >
+                            <img
+                                class="header_icon"
+                                src="assets/images/icon-messagerie.svg"
+                                alt=""
+                            >
                             Messagerie
-
+                            
                             <span
                                 class="messaging_unread_count"
                                 id="messaging-unread-count"
@@ -55,6 +60,12 @@ $route = $_GET['route'] ?? '';
                         <a href="index.php?route=account"
                             class="<?= $route === 'account' ? 'active' : '' ?>"
                         >
+                            <img
+                                class="header_icon"
+                                src="assets/images/icon-my-account.svg"
+                                alt=""
+                            >
+
                             <?= htmlspecialchars($_SESSION['pseudo']) ?>
                         </a>
                     </li>
