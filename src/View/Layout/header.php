@@ -6,93 +6,127 @@ $route = $_GET['route'] ?? '';
 
 <header>
     <div class="container">
+
         <div class="logo">
             <a href="index.php">
-                <img  class="logo_tomtroc"
-                src="assets/images/tomtroc-logo.svg" 
-                alt="Logo Tom Troc">
-                
+                <img
+                    class="logo_tomtroc"
+                    src="assets/images/tomtroc-logo.svg"
+                    alt="Logo Tom Troc"
+                >
+
                 <span class="logo_text">Tom Troc</span>
             </a>
         </div>
 
-        <nav>
-            <ul>
-                <li>
-                    <a href="index.php" class="<?= $route === '' ? 'active' : '' ?>">
-                        Accueil
-                    </a>
-                </li>
+        <!-- Bouton hamburger en mobile -->
+        <button
+            class="header_menu_toggle"
+            type="button"
+            aria-label="Ouvrir le menu"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
-                <li>
-                    <a href="index.php?route=books" class="<?= $route === 'books' ? 'active' : '' ?>">
-                        Nos livres à l'échange
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        <div class="header_nav">
 
-        <nav>
-            <ul>
-
-                <?php if (isset($_SESSION['user_id'])): ?>
-
+            <nav>
+                <ul>
                     <li>
-                        <a href="index.php?route=messaging"
-                            class="<?= $route === 'messaging' ? 'active' : '' ?>"
+                        <a
+                            href="index.php"
+                            class="<?= $route === '' ? 'active' : '' ?>"
                         >
-                            <img
-                                class="header_icon"
-                                src="assets/images/icon-messagerie.svg"
-                                alt=""
-                            >
-                            Messagerie
-                            
-                            <span
-                                class="messaging_unread_count"
-                                id="messaging-unread-count"
-                                hidden
-                            ></span>
+                            Accueil
                         </a>
                     </li>
 
                     <li>
-                        <a href="index.php?route=account"
-                            class="<?= $route === 'account' ? 'active' : '' ?>"
+                        <a
+                            href="index.php?route=books"
+                            class="<?= $route === 'books' ? 'active' : '' ?>"
                         >
-                            <img
-                                class="header_icon"
-                                src="assets/images/icon-my-account.svg"
-                                alt=""
+                            Nos livres à l'échange
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <nav>
+                <ul>
+
+                    <?php if (isset($_SESSION['user_id'])): ?>
+
+                        <li>
+                            <a
+                                href="index.php?route=messaging"
+                                class="<?= $route === 'messaging' ? 'active' : '' ?>"
                             >
+                                <img
+                                    class="header_icon"
+                                    src="assets/images/icon-messagerie.svg"
+                                    alt=""
+                                >
 
-                            <?= htmlspecialchars($_SESSION['pseudo']) ?>
-                        </a>
-                    </li>
+                                Messagerie
 
-                    <li>
-                        <a href="index.php?route=logout">
-                            Déconnexion
-                        </a>
-                    </li>
+                                <span
+                                    class="messaging_unread_count"
+                                    id="messaging-unread-count"
+                                    hidden
+                                ></span>
+                            </a>
+                        </li>
 
-                <?php else: ?>
+                        <li>
+                            <a
+                                href="index.php?route=account"
+                                class="<?= $route === 'account' ? 'active' : '' ?>"
+                            >
+                                <img
+                                    class="header_icon"
+                                    src="assets/images/icon-my-account.svg"
+                                    alt=""
+                                >
 
-                    <li>
-                        <a href="index.php?route=register" class="<?= $route === 'register' ? 'active' : '' ?>">
-                            Inscription
-                        </a>
-                    </li>
+                                <?= htmlspecialchars($_SESSION['pseudo']) ?>
+                            </a>
+                        </li>
 
-                    <li>
-                        <a href="index.php?route=login" class="<?= $route === 'login' ? 'active' : '' ?>">
-                            Connexion
-                        </a>
-                    </li>
+                        <li>
+                            <a href="index.php?route=logout">
+                                Déconnexion
+                            </a>
+                        </li>
 
-                <?php endif; ?>
+                    <?php else: ?>
 
-            </ul>
-        </nav>
+                        <li>
+                            <a
+                                href="index.php?route=register"
+                                class="<?= $route === 'register' ? 'active' : '' ?>"
+                            >
+                                Inscription
+                            </a>
+                        </li>
+
+                        <li>
+                            <a
+                                href="index.php?route=login"
+                                class="<?= $route === 'login' ? 'active' : '' ?>"
+                            >
+                                Connexion
+                            </a>
+                        </li>
+
+                    <?php endif; ?>
+
+                </ul>
+            </nav>
+
+        </div>
     </div>
 </header>

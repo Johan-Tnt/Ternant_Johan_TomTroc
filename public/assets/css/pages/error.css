@@ -35,3 +35,22 @@
 .error_page .button {
   min-width: 180px;
 }
+
+/*Responsive design en formats tablettes et mobiles*/
+@media (max-width: 768px) {
+  .error_page {
+    padding: 70px 20px;
+  }
+
+  .error_page h1 {
+    font-size: 90px;
+  }
+
+  .error_page h2 {
+    font-size: 26px;
+  }
+
+  .error_page p {
+    font-size: 15px;
+  }
+}

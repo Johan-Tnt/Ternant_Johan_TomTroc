@@ -88,3 +88,11 @@ img {
   max-width: 1200px;
   margin: 0 auto;
 }
+
+/*Responsive design en formats tablettes et mobiles*/
+@media (max-width: 768px) {
+  .team-signature {
+    flex-direction: column;
+    gap: 20px;
+  }
+}

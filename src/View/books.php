@@ -47,7 +47,7 @@
 <!-- LISTE DE LIVRES -->
 <section class="books_list">
 
-    <div class="container home_container books_container">
+    <div class="container books_container">
 
     <?php foreach ($books as $book) : ?>
 

@@ -1,6 +1,6 @@
 <!-- LECTEURS PASSIONNÉS -->
 <section class="home">
-    <div class="container home_container">
+    <div class="container home_container home_readers_container">
     
         <div class="home_content">
             <h1>Rejoignez nos lecteurs passionnés</h1>
@@ -31,7 +31,7 @@
 
     <h2>Les derniers livres ajoutés</h2>
 
-    <div class="container home_container">
+    <div class="container home_container latest_books_container">
     
         <?php foreach ($latestBooks as $book) : ?>
 
@@ -103,9 +103,10 @@
             </div>
     </div>
 
-    <div>
-            <img src="assets/images/banner-home.png" 
-            alt="Une femme observant des piles de livres"> 
+    <div class="home_banner">
+
+            <img src="assets/images/banner-home.jpg" 
+            alt="Une femme observant des piles de livres">
     </div>
 </section>
 

@@ -72,7 +72,6 @@
   overflow: hidden;
   color: #999999;
   font-size: 10px;
-  /*text-overflow: ellipsis;*/
   white-space: nowrap;
 }
 
@@ -202,4 +201,115 @@
   color: #999999;
   font-size: 11px;
   text-align: center;
+}
+
+/*Responsive design en formats tablettes et mobiles*/
+.messaging_back {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .messaging_content {
+    display: block;
+    min-height: 0;
+  }
+
+  /*Affiche uniquement la liste lorsqu'aucune conversation n'est sélectionnée*/
+  .messaging_content--list .messaging_conversation_view {
+    display: none;
+  }
+
+  /*Affiche uniquement la conversation lorsqu'elle est sélectionnée*/
+  .messaging_content--conversation .messaging_conversations {
+    display: none;
+  }
+
+  .messaging_conversations_header {
+    padding: 25px 20px;
+  }
+
+  .messaging_conversations_header h1 {
+    font-size: 24px;
+  }
+
+  .messaging_conversation {
+    padding: 12px 20px;
+  }
+
+  .messaging_conversation_view {
+    min-height: calc(80vh - 91px);
+    padding: 0;
+  }
+
+  .messaging_conversation_top {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px 20px;
+  }
+
+  .messaging_back {
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 12px;
+    text-align: left;
+    text-decoration: none;
+  }
+
+  .messaging_messages {
+    gap: 15px;
+    padding: 15px 20px;
+  }
+
+  .messaging_message_wrapper {
+    max-width: 80%;
+  }
+
+  .messaging_form {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 10px;
+    padding: 15px 20px 30px;
+  }
+
+  .messaging_input {
+    flex: 1;
+    min-width: 0;
+    height: 45px;
+    padding: 12px 15px;
+  }
+
+  .messaging_button {
+    flex-shrink: 0;
+    height: 45px;
+    padding: 12px 20px;
+  }
+}
+
+@media (max-width: 425px) {
+  .messaging_form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 15px 20px 30px;
+  }
+
+  .messaging_input {
+    width: 100%;
+    flex: none;
+    height: 45px;
+    box-sizing: border-box;
+    padding: 12px 15px;
+  }
+
+  .messaging_button {
+    width: 100%;
+    flex-shrink: 1;
+    height: 45px;
+    padding: 12px 20px;
+  }
 }

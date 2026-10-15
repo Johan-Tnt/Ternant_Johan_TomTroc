@@ -33,6 +33,8 @@
 
     <?php require_once __DIR__ . '/footer.php'; ?>
 
+    <script src="assets/js/header.js"></script>
+
     <script src="assets/js/message-count.js"></script>
 
     <?php if (($pageStyle ?? '') === 'messaging.css') : ?>

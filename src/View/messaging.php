@@ -2,7 +2,8 @@
 
     <div class="container">
 
-        <div class="messaging_content">
+        <div class="messaging_content <?= $conversation !== null ? 
+            'messaging_content--conversation' : 'messaging_content--list' ?>">
 
            <!-- LISTE DES CONVERSATIONS -->
             <aside class="messaging_conversations">
@@ -107,6 +108,13 @@
                 ?>
 
                 <div class="messaging_conversation_top">
+
+                    <a
+                        href="index.php?route=messaging"
+                        class="messaging_back"
+                    >
+                        ← Retour
+                    </a>
 
                     <div class="messaging_avatar">
                         

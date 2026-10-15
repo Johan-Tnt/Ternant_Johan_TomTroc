@@ -33,10 +33,29 @@
   gap: 40px;
 }
 
-/*Contient les médias querries du site*/
-/*Responsive design en formats tablette*/
+/*Responsive design en formats tablettes et mobiles*/
 @media (max-width: 1024px) {
-  .home_container {
+  .books_container {
     grid-template-columns: repeat(3, 1fr);
+  }
+  .book_card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .books_container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .book_card h2,
+  .book_card h3 {
+    font-size: 13px;
+    margin: 8px 12px 6px;
+  }
+
+  .book_card p {
+    font-size: 10px;
+    margin: 0 12px 12px;
   }
 }

@@ -274,3 +274,108 @@
     1fr
     2fr;
 }
+
+/*Responsive design en formats tablettes et mobiles*/
+@media (max-width: 768px) {
+  .account_content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /*Chaque livre deviens son propre bloc/card, séparé du livre suivant uniquent en mobile*/
+  .account_books_table {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .account_books_table_header {
+    display: none;
+  }
+
+  .account_section {
+    padding: 30px 0 50px;
+  }
+
+  .account_section h1 {
+    margin-bottom: 25px;
+    font-size: 24px;
+  }
+
+  .account_profile,
+  .account_information {
+    padding: 30px 25px;
+    border-radius: 20px;
+  }
+
+  .account_books {
+    border-radius: 20px;
+    background: none;
+  }
+
+  .account_books_header {
+    padding: 20px 0;
+  }
+
+  .account_book_row {
+    grid-template-columns: 65px 1fr;
+    grid-template-areas:
+      "image title"
+      "image author"
+      "image availability"
+      "description description"
+      "actions actions";
+    padding: 40px;
+    gap: 8px 15px;
+    border: none;
+    border-radius: 12px;
+    background: white;
+  }
+
+  .account_book_row:nth-child(odd) {
+    background-color: #ffffff;
+  }
+
+  .account_book_image {
+    grid-area: image;
+  }
+
+  .account_book_title {
+    grid-area: title;
+  }
+
+  .account_book_author {
+    grid-area: author;
+  }
+
+  .account_book_description {
+    grid-area: description;
+    display: block;
+    max-height: 50px;
+  }
+
+  .account_book_availability {
+    display: block;
+    grid-area: availability;
+    margin-top: 10px;
+  }
+
+  .account_book_actions {
+    grid-area: actions;
+    margin-top: 5px;
+  }
+
+  .account_book_image img {
+    width: 65px;
+    height: 90px;
+  }
+
+  .account_book_author {
+    display: block;
+  }
+
+  .account_empty_books {
+    background-color: #ffffff;
+    border-radius: 12px;
+  }
+}

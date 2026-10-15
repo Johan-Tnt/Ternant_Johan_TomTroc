@@ -68,3 +68,10 @@
   align-items: center;
   justify-content: center;
 }
+
+/*Responsive design en formats tablettes et mobiles*/
+@media (max-width: 768px) {
+  .button {
+    width: 100%;
+  }
+}
