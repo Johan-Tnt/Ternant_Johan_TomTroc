@@ -3,7 +3,8 @@
   background: white;
   border-radius: 0 0 10px 10px;
   overflow: hidden;
-  width: 240px;
+  width: 100%;
+  max-width: 240px;
   height: 100%;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   position: relative;
@@ -38,14 +39,20 @@
   .books_container {
     grid-template-columns: repeat(3, 1fr);
   }
+
   .book_card {
     width: 100%;
+    max-width: initial;
   }
 }
 
 @media (max-width: 768px) {
   .books_container {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .book_card img {
+    height: auto;
   }
 
   .book_card h2,

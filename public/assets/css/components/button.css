@@ -74,4 +74,11 @@
   .button {
     width: 100%;
   }
+
+  .button_unavailable {
+    width: auto;
+    height: 15px;
+    font-size: 7px;
+    padding: 1px 20px;
+  }
 }

@@ -203,6 +203,7 @@
   }
 }
 
+/*Responsive design en formats tablettes et mobiles*/
 @media (max-width: 320px) {
   .latest_books_container {
     display: grid;

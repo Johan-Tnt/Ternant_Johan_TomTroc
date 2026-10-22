@@ -153,6 +153,7 @@ nav a.active {
 
   .header_nav nav {
     margin: 0;
+    padding-left: 25px;
   }
 
   .header_nav nav ul {
@@ -163,5 +164,17 @@ nav a.active {
 
   .header_nav nav:last-of-type ul {
     gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header_nav nav {
+    padding-left: 10px;
+  }
+
+  @media (max-width: 425px) {
+    .header_nav nav {
+      padding-left: initial;
+    }
   }
 }

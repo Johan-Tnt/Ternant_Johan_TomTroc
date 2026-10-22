@@ -276,7 +276,8 @@
 }
 
 /*Responsive design en formats tablettes et mobiles*/
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+  /*Mon compte*/
   .account_content {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -342,32 +343,34 @@
 
   .account_book_title {
     grid-area: title;
+    margin-left: 15px;
   }
 
   .account_book_author {
     grid-area: author;
+    margin-left: 15px;
   }
 
   .account_book_description {
     grid-area: description;
     display: block;
     max-height: 50px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    margin-top: 15px;
   }
 
   .account_book_availability {
     display: block;
     grid-area: availability;
     margin-top: 10px;
+    margin-left: 15px;
   }
 
   .account_book_actions {
     grid-area: actions;
-    margin-top: 5px;
-  }
-
-  .account_book_image img {
-    width: 65px;
-    height: 90px;
+    margin-top: 25px;
   }
 
   .account_book_author {
@@ -377,5 +380,50 @@
   .account_empty_books {
     background-color: #ffffff;
     border-radius: 12px;
+  }
+
+  /*Compte public*/
+  .account_profile_content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .account_profile_content .account_avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .account_profile_content .account_profile_separator {
+    width: 75%;
+  }
+
+  .account_profile_content .account_profile p {
+    font-size: 12px;
+  }
+
+  .account_profile_content .account_profile_message {
+    font-size: 14px;
+  }
+
+  .account_profile_books_table .account_book_row {
+    grid-template-columns: 65px minmax(0, 1fr);
+    padding: 25px;
+  }
+
+  .account_profile_books_table .account_book_title {
+    margin-top: 20px;
+  }
+
+  .account_profile_books_table .account_book_title,
+  .account_profile_books_table .account_book_author {
+    margin-left: 10px;
+  }
+
+  .account_profile_books_table .account_book_description {
+    margin-top: 15px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
   }
 }
