@@ -7,10 +7,14 @@ session_start();
 require_once __DIR__ . '/../src/Config/Autoload.php';
 
 use App\Config\Autoload;
+use App\Service\AuthTokenService;
 use App\Service\Router;
 
 //Enregistre l'autoloader PSR-4
 Autoload::register();
+
+//Restauyre la connexion persistante si nécessaire
+(new AuthTokenService())->restoreRememberedLogin();
 
 //Lance le router
 Router::getInstance()->run();

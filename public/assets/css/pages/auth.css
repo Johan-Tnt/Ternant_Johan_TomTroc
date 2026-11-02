@@ -123,6 +123,18 @@
   color: #d32f2f;
 }
 
+/*Styles des pages Mot de passe oublié et Réinitialiser le mot de passe*/
+.forgot_reset_password_intro {
+  margin: 0 0 32px;
+  line-height: 1.6;
+}
+
+.forgot_reset_password_message,
+.forgot_reset_password_error {
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+
 /*Responsive design en formats tablettes et mobiles*/
 @media screen and (max-width: 768px) {
   .auth_container {
@@ -154,5 +166,9 @@
   .login_register,
   .register_login {
     margin-top: 30px;
+  }
+
+  .forgot_reset_password_intro {
+    margin-bottom: 28px;
   }
 }

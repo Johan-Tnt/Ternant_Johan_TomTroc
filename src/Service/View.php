@@ -24,8 +24,14 @@ class View extends Singleton
         //Variables utilisées dans main.php
         $content = $this->renderView($viewPath, $params);
         
-        //Charge auth.css pour les pages de connexion et d'inscription
-        if ($viewName === 'login' || $viewName === 'register') {
+        //Charge auth.css pour les pages d'authentification
+        if (
+            in_array(
+                $viewName,
+                ['login', 'register', 'forgot-password', 'reset-password'],
+                true
+            )
+        ) {
             $pageStyle = 'auth.css';
 
         } elseif ($viewName === '403' || $viewName === '404') {

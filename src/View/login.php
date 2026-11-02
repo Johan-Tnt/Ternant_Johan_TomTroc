@@ -6,7 +6,7 @@
 
             <h1>Connexion</h1>
 
-            <form action="#" method="POST" class="auth_form">
+            <form action="index.php?route=login" method="POST" class="auth_form">
                 
                 <div class="form_group">
                     <label for="email">Adresse e-mail</label>
@@ -35,12 +35,13 @@
 
                         <input 
                             type="checkbox"
-                            name="remember">
+                            name="remember"
+                            value="1">
 
                         <span>Se souvenir de moi</span>
                     </label>
 
-                    <a href="#" class="forgot_password">
+                    <a href="index.php?route=forgot-password" class="forgot_password">
                         Mot de passe oublié ?
                     </a>
 
@@ -52,6 +53,18 @@
 
                     <p class="error_message">
                         <?= htmlspecialchars($error) ?>
+                    </p>
+
+                <?php endif; ?>
+
+                <?php if (!empty($message)) : ?>
+
+                    <p class="success_message forgot_reset_password_message">
+                        <?= htmlspecialchars(
+                            $message,
+                            ENT_QUOTES,
+                            'UTF-8'
+                        ) ?>
                     </p>
 
                 <?php endif; ?>

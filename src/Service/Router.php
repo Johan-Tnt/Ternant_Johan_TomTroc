@@ -49,6 +49,14 @@ class Router extends Singleton
                 (new AuthController())->login();
                 break;
 
+            case 'forgot-password':
+                (new AuthController())->forgotPassword();
+                break;
+
+            case 'reset-password':
+                (new AuthController())->resetPassword();
+                break;
+
             case 'logout':
                 (new AuthController())->logout();
                 break;
