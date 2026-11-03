@@ -7,6 +7,7 @@ use App\Repository\UserRepository;
 use App\Entity\User;
 use App\Service\AuthTokenService;
 use App\Service\Database;
+use App\Service\Config;
 
 class AuthController
 {
@@ -133,7 +134,7 @@ class AuthController
             $_SESSION['pseudo'] = $user->getPseudo();
 
             //Gère la connexion persistante 
-            $authTokenService = new AuthTokenService();
+            $authTokenService = AuthTokenService::getInstance();
 
             if (isset($_POST['remember'])) {
                 //Conserve la connexion pendant 30 jours
@@ -190,11 +191,23 @@ class AuthController
                 //Génère un jeton uniquement si l'utilisateur existe
                 if ($user !== null) {
 
-                    //Récupère le nom d'hôte
-                    $host = $_SERVER['HTTP_HOST'] ?? '';
+                    //Récupère l'adresse e-mail de l'expéditeur
+                    $fromAddress = Config::getInstance()->get('MAIL_FROM_ADDRESS');
 
-                    //Vérifie que l'application est accessible en local
-                    if (in_array($host, ['localhost', '127.0.0.1'], true)) {
+                    //Récupère l'URL de l'application
+                    $appUrl = Config::getInstance()->get('APP_URL');
+
+                    //Vérifie que la configuration est valide
+                    if (
+                        !is_string($fromAddress)
+                        || !filter_var($fromAddress, FILTER_VALIDATE_EMAIL)
+                        || !is_string($appUrl)
+                        || !filter_var($appUrl, FILTER_VALIDATE_URL)
+                        || !in_array(parse_url($appUrl, PHP_URL_SCHEME), ['http', 'https'], true)
+                        || empty(parse_url($appUrl, PHP_URL_HOST))
+                    ) {
+                        error_log('Configuration e-mail ou URL TomTroc invalide.');
+                    } else {
 
                         //Génère un jeton aléatoire sécurisé
                         $token = bin2hex(random_bytes(32));
@@ -235,22 +248,8 @@ class AuthController
                             'token_hash' => $tokenHash
                         ]);
 
-                        //Détermine le protocole utilisé
-                        $isHttps = isset($_SERVER['HTTPS'])
-                            && $_SERVER['HTTPS'] !== ''
-                            && $_SERVER['HTTPS'] !== 'off';
-
-                        $scheme = $isHttps ? 'https' : 'http';
-
-                        //Récupère le chemin du dossier de l'application
-                        $scriptDirectory = rtrim(
-                            dirname($_SERVER['SCRIPT_NAME']),
-                            '/'
-                        );
-
                         //Construit le lien de réinitialisation
-                        $resetLink = $scheme . '://' . $host
-                            . $scriptDirectory
+                        $resetLink = rtrim($appUrl, '/')
                             . '/index.php?route=reset-password&token='
                             . urlencode($token);
 
@@ -271,7 +270,7 @@ class AuthController
 
                         //Définit l'expéditeur et le format du message
                         $headers = [
-                            'From' => 'TomTroc <tomtroc@localhost>',
+                            'From' => 'TomTroc <' . $fromAddress . '>',
                             'Content-Type' => 'text/plain; charset=UTF-8',
                             'X-Mailer' => 'PHP/' . phpversion()
                         ];
@@ -423,7 +422,7 @@ class AuthController
                 return;
             }
 
-            //Vérifie la longeur minimale du mot de passe
+            //Vérifie la longueur minimale du mot de passe
             if (strlen($password) < 8) {
                 View::getInstance()->render(
                     'reset-password',
@@ -528,7 +527,7 @@ class AuthController
     public function logout(): void
     {
         //Révoque le jeton de connexion persistante
-        (new AuthTokenService())->revokeRememberToken();
+        AuthTokenService::getInstance()->revokeRememberToken();
         
         //Détruit les données de session
         session_unset();

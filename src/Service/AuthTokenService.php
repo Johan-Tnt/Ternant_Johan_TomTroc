@@ -4,7 +4,7 @@ namespace App\Service;
 
 use PDO;
 
-class AuthTokenService
+class AuthTokenService extends Singleton
 {
     //Durée de validité du jeton : 30 jours
     private const REMEMBER_DURATION = 2592000;
@@ -15,7 +15,7 @@ class AuthTokenService
     //Connexion à la base de données
     private PDO $connection;
 
-    public function __construct()
+    protected function __construct()
     {
         $this->connection = Database::getInstance()->getConnection();
     }

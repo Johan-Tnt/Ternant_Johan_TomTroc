@@ -13,8 +13,8 @@ use App\Service\Router;
 //Enregistre l'autoloader PSR-4
 Autoload::register();
 
-//Restauyre la connexion persistante si nécessaire
-(new AuthTokenService())->restoreRememberedLogin();
+//Restaure la connexion persistante si nécessaire
+AuthTokenService::getInstance()->restoreRememberedLogin();
 
 //Lance le router
 Router::getInstance()->run();
