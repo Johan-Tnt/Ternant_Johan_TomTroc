@@ -28,6 +28,7 @@
                 </p>
 
                 <img
+                    id="book_picture_preview"
                     src="assets/images/pictures-books/<?= htmlspecialchars(
                         $book['picture'] ?? 'default-book.jpg'
                     ) ?>"

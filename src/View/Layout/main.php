@@ -41,6 +41,10 @@
        <script src="assets/js/messaging.js"></script>
     <?php endif; ?>
 
+    <?php if (($pageStyle ?? '') === 'book-form.css') : ?>
+        <script src="assets/js/image-preview.js"></script>
+    <?php endif; ?>
+
 </body>
 
 </html>

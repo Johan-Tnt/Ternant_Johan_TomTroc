@@ -75,23 +75,11 @@ class BookController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $title = htmlspecialchars(
-                trim($_POST['title'] ?? ''),
-                ENT_QUOTES,
-                'UTF-8'
-            );
+            $title = trim($_POST['title'] ?? '');
 
-            $author = htmlspecialchars(
-                trim($_POST['author'] ?? ''),
-                ENT_QUOTES,
-                'UTF-8'
-            );
+            $author = trim($_POST['author'] ?? '');
 
-            $description = htmlspecialchars(
-                trim($_POST['description'] ?? ''),
-                ENT_QUOTES,
-                'UTF-8'
-            );
+            $description = trim($_POST['description'] ?? '');
             
             $availability = $_POST['availability'] ?? 'available';
 
@@ -227,23 +215,11 @@ class BookController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $title = htmlspecialchars(
-                trim($_POST['title'] ?? ''),
-                ENT_QUOTES,
-                'UTF-8'
-            );
+            $title = trim($_POST['title'] ?? '');
 
-            $author = htmlspecialchars(
-                trim($_POST['author'] ?? ''),
-                ENT_QUOTES,
-                'UTF-8'
-            );
+            $author = trim($_POST['author'] ?? '');
 
-            $description = htmlspecialchars(
-                trim($_POST['description'] ?? ''),
-                ENT_QUOTES,
-                'UTF-8'
-            );
+            $description = trim($_POST['description'] ?? '');
             
             $availability = $_POST['availability'] ?? 'available';
 
